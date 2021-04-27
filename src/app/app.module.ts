@@ -11,9 +11,10 @@ import { LoginPageModule } from './login-page/login-page.module';
 import { RegistrationPageModule } from './registration-page/registration-page.module';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, MainLayoutComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,6 +24,7 @@ import { SharedModule } from './shared/shared.module';
     LoginPageModule,
     RegistrationPageModule,
     SharedModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
