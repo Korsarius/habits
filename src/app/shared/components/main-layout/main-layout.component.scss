@@ -33,6 +33,9 @@
     height: 100%;
     background-color: $bc-beige;
     background-image: url("../../../../assets/images/home-background.png");
+    .container{
+      margin-top: 100px;
+    }
   }
 
   .main-footer {
