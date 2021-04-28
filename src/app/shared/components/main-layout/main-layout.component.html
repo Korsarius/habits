@@ -1,0 +1,59 @@
+<!-- Header -->
+<div class="main-wrapper">
+  <header class="main-header">
+    <div>
+      <span>Example text, Hello User</span>
+    </div>
+    <div class="main-header-title">
+      <span class="main-header-text">My Habits</span>
+    </div>
+    <nav class="main-nav">
+      <button
+        mat-button
+        [routerLink]="['/']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </button>
+      <button mat-button>
+        <a class="about-link" href="#about-section">About</a>
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/habits']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Habits
+      </button>
+      <button
+        mat-button
+        [routerLink]="['/login']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Log In
+      </button>
+      <button mat-button [matMenuTriggerFor]="beforeMenu">My Profile</button>
+      <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="['/profile/1414']">
+          View Profile
+        </button>
+        <button mat-menu-item [routerLink]="['/profile/1414/myhabits']">
+          My habits
+        </button>
+        <button mat-menu-item>Log Out</button>
+      </mat-menu>
+    </nav>
+  </header>
+  <main class="main">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer class="main-footer">
+    <p class="copyright">&#169; Habits 2021</p>
+  </footer>
+</div>
