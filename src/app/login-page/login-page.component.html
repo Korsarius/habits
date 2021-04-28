@@ -1,1 +1,35 @@
-<p>login-page works!</p>
+
+<div class="login-container">
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <h2 class="form-title">SIGN IN</h2>
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your email</mat-label>
+        <input class="form-input" matInput placeholder="Enter your email" formControlName="email" required>
+        <mat-hint *ngIf="form.get('email').touched && form.get('email').hasError('required')">Edit email</mat-hint>
+        <mat-hint *ngIf="form.get('email').touched && form.get('email').hasError('email')">Email must be email</mat-hint> 
+      </mat-form-field>
+    </div>
+
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input class="form-input" matInput placeholder="Enter your password" formControlName="password" required>
+        <mat-error *ngIf="form.get('password').touched && form.get('password').errors?.required">Edit password</mat-error>
+        <mat-error *ngIf="form.get('password').touched && form.get('password').errors?.minlength"> 
+           Password must be at least
+          {{ form.get("password").errors.minlength.requiredLength }} characters.
+          Now it is
+          {{ form.get("password").errors.minlength.actualLength }} 
+         </mat-error>
+      </mat-form-field> 
+    </div>
+
+    <div class="form-container login-control">
+      <button class="submit-btn"  type="submit"
+      [disabled]="form.invalid || submitted"
+      >Log In</button>
+      <p> You not registered, <a [routerLink]="['/registration']">sign up</a></p>
+    </div> 
+  </form>
+</div>
