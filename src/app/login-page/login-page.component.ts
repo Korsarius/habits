@@ -1,37 +1,63 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { IUser } from '../shared/interfaces';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit{
- 
+export class LoginPageComponent implements OnInit {
   form: FormGroup;
   submitted = false;
 
-  constructor() { }
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
+    // this.auth.testPost();
   }
 
- 
-  buildForm(): void{
-    this.form =  new FormGroup({
+  buildForm(): void {
+    this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
-    })
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+    });
     console.log(this.form);
   }
 
-  submit(): void{
-    console.log('submit');
+  submit(): void {
+    // console.log('submit');
     if (this.form.invalid) {
-      return
+      return;
     }
+
     this.submitted = true;
+    const user: IUser = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+      secureToken: true,
+    };
+
+    this.auth.login(user).subscribe(
+      (res) => {
+        this.form.reset();
+        console.log(res);
+        this.router.navigate(['/']);
+        this.submitted = false;
+      },
+      () => {
+        this.submitted = false;
+      }
+    );
   }
 }
