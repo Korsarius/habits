@@ -20,6 +20,9 @@
     .form-container {
       .mat-form-field{
         width: 100%;
+        .error-hint{
+          color: $txt-c-red;
+        }
       }
       .submit-btn{
         width: 100px;
