@@ -32,11 +32,9 @@ export class LoginPageComponent implements OnInit {
         Validators.minLength(6),
       ]),
     });
-    console.log(this.form);
   }
 
   submit(): void {
-    // console.log('submit');
     if (this.form.invalid) {
       return;
     }
@@ -51,7 +49,6 @@ export class LoginPageComponent implements OnInit {
     this.auth.login(user).subscribe(
       (res) => {
         this.form.reset();
-        console.log(res);
         this.router.navigate(['/']);
         this.submitted = false;
       },

@@ -46,7 +46,7 @@
         <button mat-menu-item [routerLink]="['/profile/1414/myhabits']">
           My habits
         </button>
-        <button mat-menu-item>Log Out</button>
+        <button mat-menu-item (click)="logout()">Log Out</button>
       </mat-menu>
     </nav>
   </header>
