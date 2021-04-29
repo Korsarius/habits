@@ -6,8 +6,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter your email</mat-label>
         <input class="form-input" matInput placeholder="Enter your email" formControlName="email" required>
-        <mat-hint *ngIf="form.get('email').touched && form.get('email').hasError('required')">Edit email</mat-hint>
-        <mat-hint *ngIf="form.get('email').touched && form.get('email').hasError('email')">Email must be email</mat-hint> 
+        <mat-hint class="error-hint" *ngIf="form.get('email').touched && form.get('email').hasError('required')">Edit email</mat-hint>
+        <mat-hint class="error-hint" *ngIf="form.get('email').touched && form.get('email').hasError('email')">Email must be email</mat-hint> 
       </mat-form-field>
     </div>
 
