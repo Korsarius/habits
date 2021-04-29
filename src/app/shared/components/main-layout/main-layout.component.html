@@ -36,7 +36,9 @@
       >
         Log In
       </button>
-      <button mat-button [matMenuTriggerFor]="beforeMenu">My Profile</button>
+      <button *ngIf="isLoggenIn" mat-button [matMenuTriggerFor]="beforeMenu">
+        My Profile
+      </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
         <button mat-menu-item [routerLink]="['/profile/1414']">
           View Profile
