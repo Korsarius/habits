@@ -20,6 +20,7 @@
         <a class="about-link" href="#about-section">About</a>
       </button>
       <button
+        *ngIf="isLoggenIn"
         mat-button
         [routerLink]="['/habits']"
         routerLinkActive="active"
