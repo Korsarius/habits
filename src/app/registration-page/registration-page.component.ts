@@ -44,11 +44,13 @@ export class RegistrationPageComponent implements OnInit {
 
     this.submitted = true;
 
-    // const user: IUser = {
-    //   email: this.form.value.email,
-    //   password: this.form.value.password,
-    //   secureToken: true,
-    // };
+    const user: IUser = {
+      email: this.form.value.email,
+      password: this.form.value.password,
+      // secureToken: true,
+    };
+
+    this.auth.SignUp(user.email, user.password, user);
 
     // this.auth.login(user).subscribe(
     //   (res) => {
