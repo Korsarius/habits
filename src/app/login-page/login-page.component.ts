@@ -48,6 +48,10 @@ export class LoginPageComponent implements OnInit {
 
     this.auth.login(user).subscribe(
       (res) => {
+        console.log('res: ', res);
+        // this.auth
+        //   .getUser(res.localId)
+        //   .subscribe((u) => console.log('user:', u));
         this.form.reset();
         this.router.navigate(['/']);
         this.submitted = false;

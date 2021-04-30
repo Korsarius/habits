@@ -1,65 +1,68 @@
 @import "../../styles.scss";
 
-.geristration-container{
- width: 500px;
- height: 500px;
- padding: 20px 0;
- background-color: $bc-gray;
- border-radius: 25px;
- box-shadow: 3px 3px 10px $sh-c-black;
- margin: -90px  auto 0 auto;
- display: flex;
- justify-content: center;
- .form{
-   width: 400px;
-    .form-title{
-      text-align: center;
-      color:$txt-c-white;
-      font-size: 20px;
-      font-family: "Regular";
-    }
-    .date-gender-container{
-      display: flex;
-      justify-content: space-between;
-      :nth-child(1){
-        width: 120px;
+.registration-wrapper {
+  height: 78.6vh;
+  display: flex;
+  align-items: center;
+  margin-top: 100px;
+  .geristration-container {
+    width: 500px;
+    height: 500px;
+    padding: 20px 0;
+    background-color: $bc-gray;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px $sh-c-black;
+    margin: -90px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    .form {
+      width: 400px;
+      .form-title {
+        text-align: center;
+        color: $txt-c-white;
+        font-size: 20px;
+        font-family: "Regular";
       }
-      
-    }
-    .form-container {
-
-      .mat-form-field{
-        width: 100%;
-        .error-hint{
-          color: $txt-c-red;
+      .date-gender-container {
+        display: flex;
+        justify-content: space-between;
+        :nth-child(1) {
+          width: 120px;
         }
       }
-      .submit-btn{
-        width: 100px;
-        height: 35px;
-        outline: none;
-        font-size: 24px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        font-family: "Regular";
-        cursor: pointer;
-        border: none;
-        color: $txt-c-white;
-        border-radius: 10px;
-        background-color: $bc-orange;
-        box-shadow: 3px 3px 10px $sh-c-black;
-        transition: all 0.1s ease-in-out;
+      .form-container {
+        .mat-form-field {
+          width: 100%;
+          .error-hint {
+            color: $txt-c-red;
+          }
+        }
+        .submit-btn {
+          width: 100px;
+          height: 35px;
+          outline: none;
+          font-size: 24px;
+          margin-top: 0px;
+          margin-bottom: 0px;
+          font-family: "Regular";
+          cursor: pointer;
+          border: none;
+          color: $txt-c-white;
+          border-radius: 10px;
+          background-color: $bc-orange;
+          box-shadow: 3px 3px 10px $sh-c-black;
+          transition: all 0.1s ease-in-out;
+        }
+        .submit-btn:hover {
+          color: $txt-c-orange;
+          background-color: $bc-white;
+        }
       }
-      .submit-btn:hover{
-        color:$txt-c-orange;
-        background-color: $bc-white;
+      .login-control {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
       }
     }
-    .login-control{
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
- }
-
+  }
 }

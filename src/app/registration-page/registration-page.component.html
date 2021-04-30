@@ -1,84 +1,159 @@
-
-<div class="geristration-container">
-  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
-    <h2 class="form-title">SIGN UP</h2>
-    <div class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your email</mat-label>
-        <input class="form-input" matInput placeholder="Enter your email" formControlName="email" required>
-        <mat-hint  class="error-hint" *ngIf="form.get('email').touched && form.get('email').hasError('required')">Edit email</mat-hint>
-        <mat-hint  class="error-hint" *ngIf="form.get('email').touched && form.get('email').hasError('email')">Email must be email</mat-hint>
-      </mat-form-field>
-    </div>
-
-    <div class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        
-        <input class="form-input" matInput placeholder="Enter your password" formControlName="password" required>
-        <mat-error *ngIf="form.get('password').touched && form.get('password').errors?.required">Edit password
-        </mat-error>
-        <mat-error *ngIf="form.get('password').touched && form.get('password').errors?.minlength">
-          Password must be at least
-          {{ form.get("password").errors.minlength.requiredLength }} characters.
-          Now it is
-          {{ form.get("password").errors.minlength.actualLength }}
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your first name:</mat-label>
-        <input class="form-input" matInput placeholder="Enter your first Name" formControlName="firstName" required>
-        <mat-error *ngIf="form.get('firstName').touched && form.get('firstName').errors?.required">Enter your Name
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your last name:</mat-label>
-        <input class="form-input" matInput placeholder="Enter your last Name" formControlName="lastName" required>
-        <mat-error *ngIf="form.get('lastName').touched && form.get('lastName').errors?.required">Enter your Last Name
-        </mat-error>
-      </mat-form-field>
-    </div>
-
-    <div class="date-gender-container">
+<div class="registration-wrapper">
+  <div class="geristration-container">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+      <h2 class="form-title">SIGN UP</h2>
       <div class="form-container">
         <mat-form-field appearance="fill">
-          <mat-label>Birth date:</mat-label>
-          <input class="form-input" matInput placeholder="Select your  Birth date" formControlName="birthDate"
-            type="date">
+          <mat-label>Enter your email</mat-label>
+          <input
+            class="form-input"
+            matInput
+            placeholder="Enter your email"
+            formControlName="email"
+            required
+          />
+          <mat-hint
+            class="error-hint"
+            *ngIf="
+              form.get('email').touched &&
+              form.get('email').hasError('required')
+            "
+            >Edit email</mat-hint
+          >
+          <mat-hint
+            class="error-hint"
+            *ngIf="
+              form.get('email').touched && form.get('email').hasError('email')
+            "
+            >Email must be email</mat-hint
+          >
         </mat-form-field>
       </div>
-  
+
       <div class="form-container">
-        <label>Select your  gender</label>
-        <br>
-        <mat-radio-group  class="gender"
-        formControlName="gender">
-          <mat-radio-button class="gender-input" *ngFor="let gender of genders" [value]="gender">
-            {{gender}}
-          </mat-radio-button>
-        </mat-radio-group>
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your password</mat-label>
+
+          <input
+            class="form-input"
+            matInput
+            placeholder="Enter your password"
+            formControlName="password"
+            required
+          />
+          <mat-error
+            *ngIf="
+              form.get('password').touched &&
+              form.get('password').errors?.required
+            "
+            >Edit password
+          </mat-error>
+          <mat-error
+            *ngIf="
+              form.get('password').touched &&
+              form.get('password').errors?.minlength
+            "
+          >
+            Password must be at least
+            {{
+              form.get("password").errors.minlength.requiredLength
+            }}
+            characters. Now it is
+            {{ form.get("password").errors.minlength.actualLength }}
+          </mat-error>
+        </mat-form-field>
       </div>
-    </div>
 
-    <div class="form-container">
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your location:</mat-label>
-        <input class="form-input" matInput placeholder="Enter your location" formControlName="location">
-      </mat-form-field>
-    </div>
+      <div class="form-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your first name:</mat-label>
+          <input
+            class="form-input"
+            matInput
+            placeholder="Enter your first Name"
+            formControlName="firstName"
+            required
+          />
+          <mat-error
+            *ngIf="
+              form.get('firstName').touched &&
+              form.get('firstName').errors?.required
+            "
+            >Enter your Name
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="form-container login-control">
-      <button class="submit-btn"  type="submit"
-      [disabled]="form.invalid || submitted"
-      >Sign Up</button>
-      
-    </div> 
+      <div class="form-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your last name:</mat-label>
+          <input
+            class="form-input"
+            matInput
+            placeholder="Enter your last Name"
+            formControlName="lastName"
+            required
+          />
+          <mat-error
+            *ngIf="
+              form.get('lastName').touched &&
+              form.get('lastName').errors?.required
+            "
+            >Enter your Last Name
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-  </form>
+      <div class="date-gender-container">
+        <div class="form-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Birth date:</mat-label>
+            <input
+              class="form-input"
+              matInput
+              placeholder="Select your  Birth date"
+              formControlName="birthDate"
+              type="date"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="form-container">
+          <label>Select your gender</label>
+          <br />
+          <mat-radio-group class="gender" formControlName="gender">
+            <mat-radio-button
+              class="gender-input"
+              *ngFor="let gender of genders"
+              [value]="gender"
+            >
+              {{ gender }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter your location:</mat-label>
+          <input
+            class="form-input"
+            matInput
+            placeholder="Enter your location"
+            formControlName="location"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-container login-control">
+        <button
+          class="submit-btn"
+          type="submit"
+          [disabled]="form.invalid || submitted"
+        >
+          Sign Up
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

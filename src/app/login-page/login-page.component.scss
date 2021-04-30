@@ -1,56 +1,60 @@
 @import "../../styles.scss";
-.login-container{
- width: 500px;
- height: 300px;
- padding: 20px 0;
- background-color: $bc-gray;
- border-radius: 25px;
- box-shadow: 3px 3px 10px $sh-c-black;
- margin: 0 auto;
- display: flex;
- justify-content: center;
- .form{
-   width: 400px;
-    .form-title{
-      text-align: center;
-      color:$txt-c-white;
-      font-size: 24px;
-      font-family: "Reguler";
-    }
-    .form-container {
-      .mat-form-field{
-        width: 100%;
-        .error-hint{
-          color: $txt-c-red;
+.wrapper-login {
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  .login-container {
+    width: 500px;
+    height: 300px;
+    padding: 20px 0;
+    background-color: $bc-gray;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px $sh-c-black;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    .form {
+      width: 400px;
+      .form-title {
+        text-align: center;
+        color: $txt-c-white;
+        font-size: 24px;
+        font-family: "Reguler";
+      }
+      .form-container {
+        .mat-form-field {
+          width: 100%;
+          .error-hint {
+            color: $txt-c-red;
+          }
+        }
+        .submit-btn {
+          width: 100px;
+          height: 35px;
+          outline: none;
+          font-size: 24px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+          font-family: "Reguler";
+          cursor: pointer;
+          border: none;
+
+          color: $txt-c-white;
+          border-radius: 10px;
+          background-color: $bc-orange;
+          box-shadow: 3px 3px 10px $sh-c-black;
+          transition: all 0.1s ease-in-out;
+        }
+        .submit-btn:hover {
+          color: $txt-c-orange;
+          background-color: $bc-white;
         }
       }
-      .submit-btn{
-        width: 100px;
-        height: 35px;
-        outline: none;
-        font-size: 24px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        font-family: "Reguler";
-        cursor: pointer;
-        border: none;
-       
-        color: $txt-c-white;
-        border-radius: 10px;
-        background-color: $bc-orange;
-        box-shadow: 3px 3px 10px $sh-c-black;
-        transition: all 0.1s ease-in-out;
-      }
-      .submit-btn:hover{
-        color:$txt-c-orange;
-        background-color: $bc-white;
+      .login-control {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
       }
     }
-    .login-control{
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-    }
- }
-
+  }
 }
