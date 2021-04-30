@@ -1,3 +1,7 @@
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,9 +13,10 @@ import { HabitsPageModule } from './habits-page/habits-page.module';
 import { HomePageModule } from './home-page/home-page.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { RegistrationPageModule } from './registration-page/registration-page.module';
-import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { SharedModule } from './shared/shared.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +30,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     RegistrationPageModule,
     SharedModule,
     NoopAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

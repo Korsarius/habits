@@ -43,22 +43,22 @@ export class LoginPageComponent implements OnInit {
     const user: IUser = {
       email: this.form.value.email,
       password: this.form.value.password,
-      secureToken: true,
+      // secureToken: true,
     };
-
-    this.auth.login(user).subscribe(
-      (res) => {
-        console.log('res: ', res);
-        // this.auth
-        //   .getUser(res.localId)
-        //   .subscribe((u) => console.log('user:', u));
-        this.form.reset();
-        this.router.navigate(['/']);
-        this.submitted = false;
-      },
-      () => {
-        this.submitted = false;
-      }
-    );
+    this.auth.SignIn(user.email, user.password).then(async (res) => await res).then((data) => console.log("data:", data));
+    // this.auth.SignIn(user.email, user.password).subscribe(
+    //   (res) => {
+    //     console.log('res: ', res);
+    //     // this.auth
+    //     //   .getUser(res.localId)
+    //     //   .subscribe((u) => console.log('user:', u));
+    //     this.form.reset();
+    //     this.router.navigate(['/']);
+    //     this.submitted = false;
+    //   },
+    //   () => {
+    //     this.submitted = false;
+    //   }
+    // );
   }
 }

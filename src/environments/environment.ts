@@ -1,14 +1,40 @@
+import { Environment } from './interface';
+import { Firebase } from './interface';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import { Environment } from './interface';
-
+// Your web app's Firebase configuration
 export const environment: Environment = {
   production: false,
-  apiKey: 'AIzaSyDMD_TcZLJjO_MNkpMgGMSKv-E5cVFjSC8',
-  firebaseUrl: '',
+  firebase: {
+    apiKey: 'AIzaSyDMD_TcZLJjO_MNkpMgGMSKv-E5cVFjSC8',
+    authDomain: 'habits-a1d60.firebaseapp.com',
+    databaseURL:
+      'https://habits-a1d60-default-rtdb.europe-west1.firebasedatabase.app',
+    projectId: 'habits-a1d60',
+    storageBucket: 'habits-a1d60.appspot.com',
+    messagingSenderId: '890618252373',
+    appId: '1:890618252373:web:b8838147b11413735018dc',
+  },
 };
+
+// Initialize Firebase
+// firebase.initializeApp(environment);
+
+// export const environment = {
+//   production: false,
+//   firebase: {
+//     apiKey: "xxxxxxxx-xxxxxxxx",
+//     authDomain: "xxxxxxxxxxxxxxxxxxxxxxxx",
+//     databaseURL: "xxxxxxxxxxxxxxxxxxxxxxxx",
+//     projectId: "xxxxxxxx",
+//     storageBucket: "xxxxxxxx",
+//     messagingSenderId: "xxxxxx",
+//     appId: "xxxxx",
+//     measurementId: "xxxxxxxxxxxxxxxx"
+//   }
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file
