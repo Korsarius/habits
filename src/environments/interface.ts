@@ -1,5 +1,14 @@
 export interface Environment {
-    apiKey: string;
-    production: boolean;
-    firebaseUrl: string;
+  production: boolean;
+  firebase: Firebase;
+}
+
+export interface Firebase {
+  apiKey: string;
+  authDomain?: string;
+  databaseURL?: string;
+  projectId?: string;
+  storageBucket?: string;
+  messagingSenderId?: string;
+  appId?: string;
 }
