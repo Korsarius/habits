@@ -29,6 +29,7 @@
         Habits
       </button>
       <button
+        *ngIf="!isLoggenIn"
         mat-button
         [routerLink]="['/login']"
         routerLinkActive="active"

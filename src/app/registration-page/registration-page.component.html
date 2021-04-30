@@ -36,6 +36,7 @@
 
           <input
             class="form-input"
+            type="password"
             matInput
             placeholder="Enter your password"
             formControlName="password"
@@ -149,6 +150,7 @@
         <button
           class="submit-btn"
           type="submit"
+          (click)="submit()"
           [disabled]="form.invalid || submitted"
         >
           Sign Up
