@@ -10,9 +10,7 @@ import { environment } from 'src/environments/environment';
 import { FireAuthToken, IUser } from '../interfaces';
 
 @Injectable()
-// { providedIn: 'root' }
 export class AuthService {
-  
   public error$: Subject<string> = new Subject<string>();
   constructor(private http: HttpClient) {}
 
@@ -39,8 +37,6 @@ export class AuthService {
   //     this.http.post<any>(`${url}.json`, testing, httpOption).subscribe();
   //   }
 
- 
-
   login(user: IUser): Observable<any> {
     // user.secureToken = true;
     return this.http
@@ -49,6 +45,18 @@ export class AuthService {
         user
       )
       .pipe(tap(this.setToken), catchError(this.handleError.bind(this)));
+  }
+
+  getUser(id: string): Observable<any> {
+    const url: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}/users/${id}`;
+    return this.http.get<IUser>(url);
+    // .pipe(catchError(this.handleError<ICar>(`getCar id=${id}`)));
+    // return this.http
+    //   .get(
+    //     `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
+    //     user
+    //   )
+    //   .pipe(tap(this.setToken), catchError(this.handleError.bind(this)));
   }
 
   logout(): void {
@@ -62,7 +70,7 @@ export class AuthService {
   private handleError(error: HttpErrorResponse) {
     return throwError(error);
   }
-
+  // try angular Fire
   private setToken(response: FireAuthToken | null): void {
     if (response) {
       const expDate = new Date(
