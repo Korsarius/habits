@@ -1,14 +1,14 @@
 export interface IUser {
-  // email: string;
+  email?: string;
   password?: string;
-  // firstName?: string;
-  // lastName?: string;
-  // birthDate?: string;
-  // gender?: string;
-  // location?: string;
+  firstName?: string;
+  lastName?: string;
+  birthDate?: string;
+  gender?: string;
+  location?: string;
+  // createdAt?: string;
   // secureToken?: boolean;
   uid?: string;
-  email?: string;
   displayName?: string;
   photoURL?: string;
   emailVerified?: boolean;
