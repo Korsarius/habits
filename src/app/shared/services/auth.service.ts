@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -14,8 +14,6 @@ import { IUser } from '../../shared/interfaces';
 
 @Injectable()
 export class AuthService {
-  userData: any; // Save logged in user data
-
   private httpOption = {
     headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }),
   };
@@ -24,35 +22,26 @@ export class AuthService {
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     private realtimeDb: AngularFireDatabase, //Inject Realtime DataBase service
-    public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
-  ) {
-    /* Saving user data in localstorage when 
-    logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-      } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
-      }
-    });
-  }
+    public router: Router
+  ) {}
 
   // Sign in with email/password
   SignIn(email: string, password: string): Promise<void> {
+    console.log('password: ', password);
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
         console.log('result: ', result);
         console.log('result.user.uid: ', result.user.uid);
-        this.ngZone.run(() => {
+        this.getUser(result.user.uid).subscribe((user: IUser) => {
+          const currentUser: IUser = user;
+          currentUser.uid = result.user.uid;
+          localStorage.setItem('user', JSON.stringify(currentUser));
           this.router.navigate(['/']);
         });
       })
       .catch((error) => {
+        console.log('error: ', error);
         window.alert(error.message);
       });
   }
@@ -61,15 +50,23 @@ export class AuthService {
   SignUp(email: string, password: string, user: IUser): Promise<void> {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
-      .then((result) => {
+      .then(async (result) => {
         console.log('result: ', result);
         console.log('result.user.uid: ', result.user.uid);
-        this.recordUserData(result.user.uid, user);
+        await this.recordUserData(result.user.uid, user);
+        await this.SignIn(email, password);
       })
       .catch((error) => {
         window.alert(error.message);
       });
   }
+
+  // // SignOut method for logging out from the Angular/Firebase app
+  // SignOut(): Promise<void> {
+  //   return this.afAuth.signOut().then(() => {
+  //     this.router.navigate(['/']);
+  //   });
+  // }
 
   // Метод для добавления нового пользователя в Realtime DataBase
   recordUserData(uid: string, user?: IUser): Promise<void> {
@@ -77,9 +74,15 @@ export class AuthService {
     return items;
   }
 
-  // Метод для получения всех объектов коллекций
+  // Метод для получения всех пользователей в Realtime DataBase
   getUsers(): Observable<any> {
-    const items = this.realtimeDb.list('users').valueChanges();
-    return items;
+    const users = this.realtimeDb.list('users').valueChanges();
+    return users;
+  }
+
+  // Метод для получения пользователя по ID в Realtime DataBase
+  getUser(uid: string): Observable<any> {
+    const user = this.realtimeDb.object(`users/${uid}`).valueChanges();
+    return user;
   }
 }

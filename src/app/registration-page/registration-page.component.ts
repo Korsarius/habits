@@ -45,12 +45,16 @@ export class RegistrationPageComponent implements OnInit {
     this.submitted = true;
 
     const user: IUser = {
-      email: this.form.value.email,
-      password: this.form.value.password,
+      ...this.form.value,
+      // createdAt: new Date().toLocaleString(),
+      // email: this.form.value.email,
+      // password: this.form.value.password,
       // secureToken: true,
     };
-
-    this.auth.SignUp(user.email, user.password, user);
+    delete user.password;
+    console.log('user: ', user);
+    console.log('this.form.value.password: ', this.form.value.password);
+    this.auth.SignUp(user.email, this.form.value.password, user);
 
     // this.auth.login(user).subscribe(
     //   (res) => {
