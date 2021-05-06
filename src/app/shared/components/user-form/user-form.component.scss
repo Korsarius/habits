@@ -10,12 +10,16 @@
     }
     .gender-label {
       font-size: 12px;
+      margin: 0 10px 5px 0;
     }
   }
   .gender-wrapper {
     margin-bottom: 16px;
     .gender-input {
-      margin-left: 10px;
+      margin: 5px 0 0 10px;
+    }
+    .mat-radio-button:first-child {
+      margin-left: 0;
     }
   }
   .login-control {

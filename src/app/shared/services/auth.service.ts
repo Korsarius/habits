@@ -80,4 +80,10 @@ export class AuthService {
     const user = this.realtimeDb.object(`users/${uid}`).valueChanges();
     return user;
   }
+
+  // Метод для обновления пользователя по ID в Realtime DataBase
+  updateUser(user: IUser, uid: string): Promise<void> {
+    const itemUser = this.realtimeDb.object(`users/${uid}`);
+    return itemUser.update(user);
+  }
 }
