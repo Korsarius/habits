@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MainLayoutModule } from './components/main-layout/main-layout.module';
 import { AuthService } from './services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserFormModule } from './components/user-form/user-form.module';
 
 @NgModule({
-  declarations: [UserFormComponent],
-  imports: [CommonModule, MainLayoutModule, HttpClientModule],
-  entryComponents: [UserFormComponent],
-  exports: [HttpClientModule, UserFormComponent],
+  declarations: [],
+  imports: [CommonModule, MainLayoutModule, UserFormModule, HttpClientModule],
+  exports: [HttpClientModule, UserFormModule],
   providers: [AuthService]
 })
 export class SharedModule {}
