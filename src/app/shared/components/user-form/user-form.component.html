@@ -1,0 +1,196 @@
+<form class="form" [formGroup]="form">
+  <h2 class="form-title">{{ userData ? "Accout Information" : "SIGN UP" }}</h2>
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ userData ? "Email:" : "Enter your email:" }}</mat-label>
+      <input
+        [readonly]="userData"
+        class="form-input"
+        matInput
+        placeholder="Enter your email"
+        formControlName="email"
+        [required]="userData ? false : true"
+      />
+      <mat-hint
+        class="error-hint"
+        *ngIf="
+          form.get('email').touched && form.get('email').hasError('required')
+        "
+        >Edit email</mat-hint
+      >
+      <mat-hint
+        class="error-hint"
+        *ngIf="form.get('email').touched && form.get('email').hasError('email')"
+        >Email must be email</mat-hint
+      >
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="userData.password" class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your password</mat-label>
+      <input
+        class="form-input"
+        [type]="hide ? 'password' : 'text'"
+        matInput
+        placeholder="Enter your password"
+        formControlName="password"
+        [required]="userData ? false : true"
+      />
+      <button
+        class="hide-password-btn"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error
+        *ngIf="
+          form.get('password').touched && form.get('password').errors?.required
+        "
+        >Edit password
+      </mat-error>
+      <mat-error
+        *ngIf="
+          form.get('password').touched && form.get('password').errors?.minlength
+        "
+      >
+        Password must be at least
+        {{ form.get("password").errors.minlength.requiredLength }}
+        characters. Now it is
+        {{ form.get("password").errors.minlength.actualLength }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>{{
+        userData ? "First Name:" : "Enter your email:"
+      }}</mat-label>
+      <input
+        [readonly]="userData"
+        class="form-input"
+        matInput
+        placeholder="Enter your first Name"
+        formControlName="firstName"
+        [required]="userData ? false : true"
+      />
+      <mat-error
+        *ngIf="
+          form.get('firstName').touched &&
+          form.get('firstName').errors?.required
+        "
+        >Enter your Name
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>{{
+        userData ? "Last Name:" : "Enter your last Name:"
+      }}</mat-label>
+      <input
+        [readonly]="userData"
+        class="form-input"
+        matInput
+        placeholder="Enter your last Name"
+        formControlName="lastName"
+        [required]="userData ? false : true"
+      />
+      <mat-error
+        *ngIf="
+          form.get('lastName').touched && form.get('lastName').errors?.required
+        "
+        >Enter your Last Name
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="date-gender-container">
+    <div class="form-container">
+      <mat-form-field appearance="fill">
+        <mat-label>{{
+          userData ? "Birth Date:" : "Enter your Birth Date:"
+        }}</mat-label>
+        <input
+          [readonly]="userData"
+          class="form-input"
+          matInput
+          placeholder="Select your Birth date"
+          formControlName="birthDate"
+          type="date"
+        />
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="!userData" class="form-container">
+      <label *ngIf="!userData">Select your gender</label>
+      <br />
+      <mat-radio-group class="gender" formControlName="gender">
+        <mat-radio-button
+          class="gender-input"
+          *ngFor="let gender of genders"
+          [value]="gender"
+        >
+          {{ gender }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div *ngIf="userData" class="form-container gender-wrapper">
+      <label class="gender-label">Gender:</label>
+      <mat-radio-group
+        [disabled]="userData"
+        class="gender"
+        formControlName="gender"
+      >
+        <mat-radio-button class="gender-input" [value]="userData.gender">
+          {{ userData.gender }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>{{
+        userData ? "Location:" : "Enter your Location:"
+      }}</mat-label>
+      <input
+        [readonly]="userData"
+        class="form-input"
+        matInput
+        placeholder="Enter your location"
+        formControlName="location"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="form-container login-control">
+    <button
+      *ngIf="!userData"
+      class="submit-btn"
+      type="submit"
+      (click)="submit()"
+      [disabled]="form.invalid || submitted"
+    >
+      Sign Up
+    </button>
+    <button
+      *ngIf="userData"
+      class="submit-btn"
+      type="button"
+      (click)="
+        router.navigate(['/profile', this.userData.uid, 'edit']) &&
+          (this.isEdit = true)
+      "
+    >
+      Edit
+    </button>
+  </div>
+</form>

@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MyHabitsPageComponent } from './my-habits-page/my-habits-page.component';
-import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { SharedModule } from '../shared/shared.module';
+import { ProfilePageModule } from './profile-page/profile-page.module';
 
 @NgModule({
-  declarations: [MyHabitsPageComponent, ProfilePageComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  declarations: [MyHabitsPageComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProfilePageModule, SharedModule],
   exports: [RouterModule],
   providers: [],
 })

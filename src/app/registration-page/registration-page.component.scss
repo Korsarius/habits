@@ -26,9 +26,6 @@
       .date-gender-container {
         display: flex;
         justify-content: space-between;
-        :nth-child(1) {
-          width: 120px;
-        }
       }
       .form-container {
         .mat-form-field {
@@ -71,6 +68,21 @@
         .submit-btn:hover {
           color: $txt-c-orange;
           background-color: $bc-white;
+        }
+      }
+      .calendar {
+        width: 150px;
+      }
+      .gender-wrapper {
+        width: 245px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .gender {
+          margin-top: -15px;
+          .mat-radio-button {
+            margin-right: 10px;
+          }
         }
       }
       .login-control {

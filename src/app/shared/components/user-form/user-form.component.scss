@@ -1,0 +1,46 @@
+@import "../../../../styles.scss";
+
+.form {
+  .form-title {
+    text-align: center;
+  }
+  .form-container {
+    .mat-form-field {
+      width: 300px;
+    }
+    .gender-label {
+      font-size: 12px;
+    }
+  }
+  .gender-wrapper {
+    margin-bottom: 16px;
+    .gender-input {
+      margin-left: 10px;
+    }
+  }
+  .login-control {
+    display: flex;
+    flex-direction: row-reverse;
+    .submit-btn {
+      width: 125px;
+      height: 35px;
+      outline: none;
+      font-size: 24px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-family: "Reguler";
+      cursor: pointer;
+      border: none;
+
+      color: $txt-c-white;
+      border-radius: 10px;
+      background-color: $bc-orange;
+      box-shadow: 3px 3px 10px $sh-c-black;
+      transition: all 0.1s ease-in-out;
+    }
+    .submit-btn:hover {
+      color: $txt-c-orange;
+      background-color: $bc-white;
+    }
+  }
+}
