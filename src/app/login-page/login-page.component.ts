@@ -12,6 +12,7 @@ import { AuthService } from '../shared/services/auth.service';
 export class LoginPageComponent implements OnInit {
   form: FormGroup;
   submitted = false;
+  hide = true;
 
   constructor(
     private auth: AuthService,
@@ -46,7 +47,7 @@ export class LoginPageComponent implements OnInit {
       password: this.form.value.password,
       // secureToken: true,
     };
-    this.auth.SignIn(user.email, user.password).then(async (res) => await res).then((data) => console.log("data:", data));
+    this.auth.SignIn(user.email, user.password);
 
     // this.auth.SignIn(user.email, user.password).subscribe(
     //   (res) => {

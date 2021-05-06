@@ -1,0 +1,20 @@
+.profile-wrapper {
+  height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .profile {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    color: white;
+    background-color: grey;
+    border-radius: 25px;
+    .user-info {
+      padding: 10px;
+      list-style: none;
+    }
+  }
+}
