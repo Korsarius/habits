@@ -1,10 +1,10 @@
-<form class="form" [formGroup]="form">
+<form class="form" [formGroup]="form" (ngSubmit)="onSave()">
   <h2 class="form-title">{{ userData ? "Accout Information" : "SIGN UP" }}</h2>
   <div class="form-container">
     <mat-form-field appearance="fill">
       <mat-label>{{ userData ? "Email:" : "Enter your email:" }}</mat-label>
       <input
-        [readonly]="userData"
+        [readonly]="userData && !isEdit"
         class="form-input"
         matInput
         placeholder="Enter your email"
@@ -26,53 +26,13 @@
     </mat-form-field>
   </div>
 
-  <div *ngIf="userData.password" class="form-container">
-    <mat-form-field appearance="fill">
-      <mat-label>Enter your password</mat-label>
-      <input
-        class="form-input"
-        [type]="hide ? 'password' : 'text'"
-        matInput
-        placeholder="Enter your password"
-        formControlName="password"
-        [required]="userData ? false : true"
-      />
-      <button
-        class="hide-password-btn"
-        mat-icon-button
-        matSuffix
-        (click)="hide = !hide"
-        [attr.aria-label]="'Hide password'"
-        [attr.aria-pressed]="hide"
-      >
-        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-      </button>
-      <mat-error
-        *ngIf="
-          form.get('password').touched && form.get('password').errors?.required
-        "
-        >Edit password
-      </mat-error>
-      <mat-error
-        *ngIf="
-          form.get('password').touched && form.get('password').errors?.minlength
-        "
-      >
-        Password must be at least
-        {{ form.get("password").errors.minlength.requiredLength }}
-        characters. Now it is
-        {{ form.get("password").errors.minlength.actualLength }}
-      </mat-error>
-    </mat-form-field>
-  </div>
-
   <div class="form-container">
     <mat-form-field appearance="fill">
       <mat-label>{{
         userData ? "First Name:" : "Enter your email:"
       }}</mat-label>
       <input
-        [readonly]="userData"
+        [readonly]="userData && !isEdit"
         class="form-input"
         matInput
         placeholder="Enter your first Name"
@@ -95,7 +55,7 @@
         userData ? "Last Name:" : "Enter your last Name:"
       }}</mat-label>
       <input
-        [readonly]="userData"
+        [readonly]="userData && !isEdit"
         class="form-input"
         matInput
         placeholder="Enter your last Name"
@@ -118,7 +78,7 @@
           userData ? "Birth Date:" : "Enter your Birth Date:"
         }}</mat-label>
         <input
-          [readonly]="userData"
+          [readonly]="userData && !isEdit"
           class="form-input"
           matInput
           placeholder="Select your Birth date"
@@ -128,8 +88,8 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="!userData" class="form-container">
-      <label *ngIf="!userData">Select your gender</label>
+    <div *ngIf="userData && isEdit" class="form-container gender-wrapper">
+      <label *ngIf="userData && isEdit">Select your gender:</label>
       <br />
       <mat-radio-group class="gender" formControlName="gender">
         <mat-radio-button
@@ -142,7 +102,7 @@
       </mat-radio-group>
     </div>
 
-    <div *ngIf="userData" class="form-container gender-wrapper">
+    <div *ngIf="userData && !isEdit" class="form-container gender-wrapper">
       <label class="gender-label">Gender:</label>
       <mat-radio-group
         [disabled]="userData"
@@ -162,7 +122,7 @@
         userData ? "Location:" : "Enter your Location:"
       }}</mat-label>
       <input
-        [readonly]="userData"
+        [readonly]="userData && !isEdit"
         class="form-input"
         matInput
         placeholder="Enter your location"
@@ -171,26 +131,30 @@
     </mat-form-field>
   </div>
 
-  <div class="form-container login-control">
+  <div class="form-container login-control" [ngStyle]="isEdit && {'justify-content':'space-between'}">
     <button
-      *ngIf="!userData"
-      class="submit-btn"
-      type="submit"
-      (click)="submit()"
-      [disabled]="form.invalid || submitted"
-    >
-      Sign Up
-    </button>
-    <button
-      *ngIf="userData"
+      *ngIf="userData && !isEdit"
       class="submit-btn"
       type="button"
-      (click)="
-        router.navigate(['/profile', this.userData.uid, 'edit']) &&
-          (this.isEdit = true)
-      "
+      (click)="onEdit()"
     >
       Edit
+    </button>
+    <button
+      *ngIf="userData && isEdit"
+      class="submit-btn"
+      type="button"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <!-- [disabled]="form.invalid || submitted" -->
+    <button
+      *ngIf="userData && isEdit"
+      class="submit-btn"
+      type="submit"
+    >
+      Save
     </button>
   </div>
 </form>
