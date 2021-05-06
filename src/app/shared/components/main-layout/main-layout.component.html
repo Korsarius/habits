@@ -1,6 +1,6 @@
 <!-- Header -->
-<div class="main-wrapper">
-  <header id="main-header" class="main-header">
+<div id="main-header" class="main-wrapper">
+  <header class="main-header">
     <div>
       <span *ngIf="userData">Hello, {{ userData.firstName }}!</span>
     </div>
@@ -12,6 +12,7 @@
         mat-button
         [routerLink]="['/']"
         routerLinkActive="active"
+        (click)="onClick()"
         [routerLinkActiveOptions]="{ exact: true }"
       >
         Home
@@ -41,10 +42,10 @@
         My Profile
       </button>
       <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item [routerLink]="['/profile/1414']">
+        <button mat-menu-item [routerLink]="['/profile', userId]">
           View Profile
         </button>
-        <button mat-menu-item [routerLink]="['/profile/1414/myhabits']">
+        <button mat-menu-item [routerLink]="['/profile', userId, 'myhabits']">
           My habits
         </button>
         <button mat-menu-item (click)="logout()">Log Out</button>

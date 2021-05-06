@@ -13,6 +13,7 @@ export class RegistrationPageComponent implements OnInit {
   form: FormGroup;
   genders: string[] = ['female', 'male', 'other'];
   submitted = false;
+  hide: boolean = true;
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -37,7 +38,6 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('submit', this.form);
     if (this.form.invalid) {
       return;
     }
@@ -52,8 +52,6 @@ export class RegistrationPageComponent implements OnInit {
       // secureToken: true,
     };
     delete user.password;
-    console.log('user: ', user);
-    console.log('this.form.value.password: ', this.form.value.password);
     this.auth.SignUp(user.email, this.form.value.password, user);
 
     // this.auth.login(user).subscribe(

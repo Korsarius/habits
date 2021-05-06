@@ -33,15 +33,24 @@
       <div class="form-container">
         <mat-form-field appearance="fill">
           <mat-label>Enter your password</mat-label>
-
           <input
             class="form-input"
-            type="password"
+            [type]="hide ? 'password' : 'text'"
             matInput
             placeholder="Enter your password"
             formControlName="password"
             required
           />
+          <button
+            class="hide-password-btn"
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
           <mat-error
             *ngIf="
               form.get('password').touched &&
@@ -56,9 +65,7 @@
             "
           >
             Password must be at least
-            {{
-              form.get("password").errors.minlength.requiredLength
-            }}
+            {{ form.get("password").errors.minlength.requiredLength }}
             characters. Now it is
             {{ form.get("password").errors.minlength.actualLength }}
           </mat-error>

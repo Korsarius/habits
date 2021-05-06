@@ -24,6 +24,21 @@
       .form-container {
         .mat-form-field {
           width: 100%;
+          .hide-password-btn {
+            width: 35px;
+            height: 35px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            .mat-icon{
+              margin-top: 2px;
+            }
+          }
+          .hide-password-btn:hover {
+            border-radius: 50%;
+            background-color: $bc-gray;
+          }
           .error-hint {
             color: $txt-c-red;
           }

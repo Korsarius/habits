@@ -14,10 +14,12 @@ export class MainLayoutComponent implements OnInit {
 
   userData: IUser | null;
   isLoggenIn: boolean;
+  userId: string | null;
 
   ngOnInit(): void {
     this.isLoggenIn = !!localStorage.getItem('user');
     this.userData = JSON.parse(localStorage.getItem('user'));
+    this.userData ? (this.userId = this.userData.uid) : (this.userId = null);
   }
 
   logout() {
@@ -26,5 +28,12 @@ export class MainLayoutComponent implements OnInit {
     this.userData = null;
     this.isLoggenIn = false;
     this.router.navigate(['/']);
+  }
+
+  onClick(): void {
+    const x: Element = document.querySelector('#main-header');
+    if (x) {
+      x.scrollIntoView();
+    }
   }
 }

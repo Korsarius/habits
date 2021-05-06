@@ -27,12 +27,9 @@ export class AuthService {
 
   // Sign in with email/password
   SignIn(email: string, password: string): Promise<void> {
-    console.log('password: ', password);
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log('result: ', result);
-        console.log('result.user.uid: ', result.user.uid);
         this.getUser(result.user.uid).subscribe((user: IUser) => {
           const currentUser: IUser = user;
           currentUser.uid = result.user.uid;
@@ -51,8 +48,6 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
-        console.log('result: ', result);
-        console.log('result.user.uid: ', result.user.uid);
         await this.recordUserData(result.user.uid, user);
         await this.SignIn(email, password);
       })

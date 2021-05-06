@@ -17,12 +17,6 @@ export class HomePageComponent implements OnInit {
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    const currentUser: IUser = JSON.parse(localStorage.getItem('user'));
-    if (currentUser) {
-      this.auth
-        .getUser(currentUser.uid)
-        .subscribe((user) => (this.userData = user));
-    }
     // Отображение стрелки для поднятия в начало сайта при скроле
 
     // console.dir(this.upArrow);
