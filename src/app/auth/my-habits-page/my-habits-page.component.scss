@@ -1,0 +1,22 @@
+@import "../../../styles.scss";
+
+.habit-dialog-btn {
+  width: 200px;
+  height: 35px;
+  outline: none;
+  font-size: 24px;
+  margin-top: 100px;
+  font-family: "Reguler";
+  cursor: pointer;
+  border: none;
+
+  color: $txt-c-white;
+  border-radius: 20px;
+  background-color: $bc-orange;
+  box-shadow: 3px 3px 10px $sh-c-black;
+  transition: all 0.1s ease-in-out;
+}
+.habit-dialog-btn:hover {
+  color: $txt-c-orange;
+  background-color: $bc-white;
+}
