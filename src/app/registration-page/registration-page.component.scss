@@ -7,12 +7,12 @@
   margin-top: 100px;
   .geristration-container {
     width: 500px;
-    height: 500px;
+    height: 580px;
     padding: 20px 0;
     background-color: $bc-gray;
     border-radius: 25px;
     box-shadow: 3px 3px 10px $sh-c-black;
-    margin: -90px auto 0 auto;
+    margin: -40px auto 0 auto;
     display: flex;
     justify-content: center;
     .form {
@@ -30,6 +30,7 @@
       .form-container {
         .mat-form-field {
           width: 100%;
+          margin-bottom: 7px;
           .hide-password-btn {
             width: 35px;
             height: 35px;
@@ -69,6 +70,16 @@
           color: $txt-c-orange;
           background-color: $bc-white;
         }
+        .disabled {
+          cursor: default;
+          color: rgba(255, 255, 255, 0.5);
+          background-color: rgba(231, 227, 227, 0.7);
+        }
+        .disabled:hover {
+          cursor: default;
+          color: rgba(255, 255, 255, 0.5);
+          background-color: rgba(231, 227, 227, 0.7);
+        }
       }
       .calendar {
         width: 150px;
@@ -89,6 +100,9 @@
         display: flex;
         align-items: center;
         flex-direction: column;
+        .sign-in-link {
+          margin-top: 20px;
+        }
       }
     }
   }
