@@ -156,12 +156,16 @@
       <div class="form-container login-control">
         <button
           class="submit-btn"
+          [ngClass]="{ disabled: form.invalid, 'disbled:hover': form.invalid }"
           type="submit"
           (click)="submit()"
           [disabled]="form.invalid || submitted"
         >
           Sign Up
         </button>
+        <p class="sign-in-link">
+          Already registered, <a [routerLink]="['/login']">sign in</a>
+        </p>
       </div>
     </form>
   </div>

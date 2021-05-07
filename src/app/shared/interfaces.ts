@@ -16,8 +16,11 @@ export interface IUser {
 
 export interface IHabit {
   title: string;
+  type: string;
   frequency: string;
   description: string;
+  public: boolean;
+  author: string;
 }
 
 export interface FireAuthToken {

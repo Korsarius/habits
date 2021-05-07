@@ -26,6 +26,9 @@
     }
     .main-nav {
       margin-right: 10px;
+      .mat-button {
+        vertical-align: bottom;
+      }
       .active {
         color: $txt-c-beige;
       }

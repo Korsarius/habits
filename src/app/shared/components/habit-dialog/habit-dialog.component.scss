@@ -1,0 +1,8 @@
+@import "../../../../styles.scss";
+
+::ng-deep {
+  .mat-dialog-container {
+    border-radius: 25px;
+    background-color: $bc-dark-gray;
+  }
+}

@@ -19,11 +19,12 @@
         text-align: center;
         color: $txt-c-white;
         font-size: 24px;
-        font-family: "Reguler";
+        font-family: "Regular";
       }
       .form-container {
         .mat-form-field {
           width: 100%;
+          margin-bottom: 7px;
           .hide-password-btn {
             width: 35px;
             height: 35px;
@@ -31,7 +32,7 @@
             border: none;
             outline: none;
             cursor: pointer;
-            .mat-icon{
+            .mat-icon {
               margin-top: 2px;
             }
           }
@@ -50,7 +51,7 @@
           font-size: 24px;
           margin-top: 20px;
           margin-bottom: 20px;
-          font-family: "Reguler";
+          font-family: "Regular";
           cursor: pointer;
           border: none;
 
@@ -63,6 +64,16 @@
         .submit-btn:hover {
           color: $txt-c-orange;
           background-color: $bc-white;
+        }
+        .disabled {
+          cursor: default;
+          color: rgba(255, 255, 255, 0.5);
+          background-color: rgba(231, 227, 227, 0.7);
+        }
+        .disabled:hover {
+          cursor: default;
+          color: rgba(255, 255, 255, 0.5);
+          background-color: rgba(231, 227, 227, 0.7);
         }
       }
       .login-control {

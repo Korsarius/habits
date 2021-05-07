@@ -10,7 +10,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 
-import { IUser } from '../../shared/interfaces';
+import { IHabit, IUser } from '../../shared/interfaces';
 
 @Injectable()
 export class AuthService {
@@ -85,5 +85,11 @@ export class AuthService {
   updateUser(user: IUser, uid: string): Promise<void> {
     const itemUser = this.realtimeDb.object(`users/${uid}`);
     return itemUser.update(user);
+  }
+
+  // Метод для добавления новой привычки в habits в Realtime DataBase
+  addNewHabit(habit: IHabit): void {
+    const itemHabits = this.realtimeDb.list(`habits`);
+    itemHabits.push(habit);
   }
 }
