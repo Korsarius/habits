@@ -26,12 +26,7 @@
       <mat-label>Type</mat-label>
       <mat-select formControlName="type">
         <mat-option value="" disabled>Choose Habit Type</mat-option>
-        <mat-option value="health">Health</mat-option>
-        <mat-option value="sport">Sport</mat-option>
-        <mat-option value="life">Life</mat-option>
-        <mat-option value="work">Work</mat-option>
-        <mat-option value="food">Food</mat-option>
-        <mat-option value="other">Other</mat-option>
+        <mat-option [value]="type" *ngFor="let type of types">{{type}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
