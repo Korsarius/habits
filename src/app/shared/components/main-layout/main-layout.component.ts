@@ -15,11 +15,13 @@ export class MainLayoutComponent implements OnInit {
   userData: IUser | null;
   isLoggenIn: boolean;
   userId: string | null;
+  userName: string;
 
   ngOnInit(): void {
     this.isLoggenIn = !!localStorage.getItem('user');
     this.userData = JSON.parse(localStorage.getItem('user'));
     this.userData ? (this.userId = this.userData.uid) : (this.userId = null);
+    this.auth.getUser(this.userData.uid).subscribe(res => this.userName = res.firstName);
   }
 
   logout() {
