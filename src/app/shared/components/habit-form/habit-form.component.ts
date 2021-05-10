@@ -14,6 +14,7 @@ import { HabitDialogComponent } from '../habit-dialog/habit-dialog.component';
 })
 export class HabitFormComponent implements OnInit {
   form: FormGroup;
+  types: Array<String> = ['Health', 'Sport', 'Life', 'Work', 'Food','Other'];
 
   constructor(private auth: AuthService, private dialogRef: MatDialogRef<HabitDialogComponent>) {
     this.dialogRef.disableClose = true;
