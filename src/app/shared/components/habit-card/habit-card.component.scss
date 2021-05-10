@@ -1,0 +1,36 @@
+.card-container {
+  width: 350px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+
+  .card-header {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .card-title {
+      flex: 0 1 80%;
+      line-height: 1.75rem;
+      align-self: flex-start;
+    }
+
+    .card-actions {
+      flex: 0 1 15%;
+      align-self: flex-start;
+      margin: 0;
+      padding: 0;
+    }
+
+    .card-subtitle {
+      flex: 0 1 50%;
+      //   max-width: 50%;
+    }
+  }
+
+  .card-content {
+    flex: 0 1 100%
+  }
+}

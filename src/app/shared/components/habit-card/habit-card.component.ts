@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { IHabit } from '../../interfaces';
+import { IHabit, IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,13 +10,20 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HabitCardComponent implements OnInit {
   @Input() habit: IHabit;
-  habits: Array<IHabit> = new Array<IHabit>();
 
-  constructor(private auth: AuthService, private db: AngularFireDatabase) {
-    const habits = db.list('habits');
+  habits: Array<IHabit> = new Array<IHabit>();
+  isAdded = false;
+  user: IUser;
+
+  constructor(private auth: AuthService) {}
+
+  ngOnInit(): void {
+    console.log(this.habit);
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
-  ngOnInit(): void {}
-
-  addToMyHabits(): void {}
+  addToMyHabits(): void {
+    this.isAdded = !this.isAdded;
+    this.auth.addToMyHabits(this.habit, this.user);
+  }
 }

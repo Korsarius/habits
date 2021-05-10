@@ -2,6 +2,12 @@ p {
   margin-top: 200px;
 }
 
-.habits-container {
-  margin-top: 200px;
+.habits-wrapper {
+//   padding: 50px;
+  width: 1200px;
+  margin: 130px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
 }

@@ -92,4 +92,15 @@ export class AuthService {
     const itemHabits = this.realtimeDb.list(`habits`);
     itemHabits.push(habit);
   }
+
+  getHabits(): Observable<any> {
+    const habits = this.realtimeDb.list('habits').valueChanges();
+    return habits;
+  }
+
+  addToMyHabits(habit: IHabit, user: IUser): void {
+    const myHabits = this.realtimeDb.list(`users/${user.uid}/myHabits`);
+    myHabits.push(habit);
+    
+  }
 }
