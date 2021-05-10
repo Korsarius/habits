@@ -1,1 +1,10 @@
 <p>habits-page works!</p>
+
+<div class="habits-container">
+  <div>
+    <app-habit-card
+      *ngFor="let habit of habits"
+      [habit]="habit"
+    ></app-habit-card>
+  </div>
+</div>
