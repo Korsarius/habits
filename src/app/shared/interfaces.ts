@@ -12,6 +12,7 @@ export interface IUser {
   displayName?: string;
   photoURL?: string;
   emailVerified?: boolean;
+  myHabits?: IHabit[];
 }
 
 export interface IHabit {

@@ -7,11 +7,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserFormModule } from './components/user-form/user-form.module';
 import { HabitDialogModule } from './components/habit-dialog/habit-dialog.module';
 import { HabitFormModule } from './components/habit-form/habit-form.module';
+import { HabitCardModule } from './components/habit-card/habit-card.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, MainLayoutModule, HabitDialogModule, HabitFormModule, UserFormModule, HttpClientModule],
-  exports: [HttpClientModule, UserFormModule, HabitDialogModule, HabitFormModule],
-  providers: [AuthService]
+  imports: [
+    CommonModule,
+    MainLayoutModule,
+    HabitDialogModule,
+    HabitFormModule,
+    UserFormModule,
+    HttpClientModule,
+    HabitCardModule,
+  ],
+  exports: [
+    HttpClientModule,
+    UserFormModule,
+    HabitDialogModule,
+    HabitFormModule,
+    HabitCardModule,
+  ],
+  providers: [AuthService],
 })
 export class SharedModule {}

@@ -1,1 +1,3 @@
-<p>habits-page works!</p>
+<div class="habits-wrapper">
+  <app-habit-card *ngFor="let habit of habits" [habit]="habit"></app-habit-card>
+</div>
