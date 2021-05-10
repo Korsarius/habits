@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs';
+import { Observable, of, pipe, throwError } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
@@ -14,6 +15,8 @@ import { IHabit, IUser } from '../../shared/interfaces';
 
 @Injectable()
 export class AuthService {
+  userData: IUser | null;
+
   private httpOption = {
     headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }),
   };
@@ -25,12 +28,23 @@ export class AuthService {
     public router: Router
   ) {}
 
+  handleError(error: any): Observable<any> {
+    console.log('error: ', error);
+    return of(error);
+  }
+
   // Sign in with email/password
   SignIn(email: string, password: string): Promise<void> {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
+        console.log('result: ', result);
         this.getUser(result.user.uid).subscribe((user: IUser) => {
+          console.log('user: ', user);
+          if (!user) {
+            window.alert('User not found');
+            location.reload();
+          }
           const currentUser: IUser = user;
           currentUser.uid = result.user.uid;
           localStorage.setItem('user', JSON.stringify(currentUser));
@@ -38,8 +52,8 @@ export class AuthService {
         });
       })
       .catch((error) => {
-        console.log('error: ', error);
         window.alert(error.message);
+        location.reload();
       });
   }
 

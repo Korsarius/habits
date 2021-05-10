@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +16,8 @@ export class LoginPageComponent implements OnInit {
   submitted = false;
   hide = true;
 
+  user$: Observable<IUser>;
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -22,7 +26,8 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    // this.auth.testPost();
+    // this.auth.handleError
+    // this.user$.subscribe((res) => console.log("resLogin:", res));
     this.auth.getUsers().subscribe((res) => console.log('result:', res));
   }
 
@@ -36,7 +41,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  submit(): void {
+  submit(): Promise<void> {
     if (this.form.invalid) {
       return;
     }
@@ -48,20 +53,5 @@ export class LoginPageComponent implements OnInit {
       // secureToken: true,
     };
     this.auth.SignIn(user.email, user.password);
-
-    // this.auth.SignIn(user.email, user.password).subscribe(
-    //   (res) => {
-    //     console.log('res: ', res);
-    //     // this.auth
-    //     //   .getUser(res.localId)
-    //     //   .subscribe((u) => console.log('user:', u));
-    //     this.form.reset();
-    //     this.router.navigate(['/']);
-    //     this.submitted = false;
-    //   },
-    //   () => {
-    //     this.submitted = false;
-    //   }
-    // );
   }
 }

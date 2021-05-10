@@ -59,7 +59,6 @@ export class UserFormComponent implements OnInit {
 
     await this.auth.updateUser(user, this.userData.uid);
 
-    // @Output user на profile в котором по onChanges делать @Output user на MainLayout
     this.auth.getUser(this.userData.uid).subscribe((u) => {
       this.userData = u;
       this.userData.uid = JSON.parse(localStorage.getItem('user')).uid;
