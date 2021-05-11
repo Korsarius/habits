@@ -11,10 +11,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 import { MyHabitsPageComponent } from './my-habits-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [MyHabitsPageComponent],
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, SharedModule],
   exports: [MyHabitsPageComponent],
 })
 export class MyHabitsPageModule {}

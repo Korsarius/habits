@@ -8,9 +8,11 @@ import { UserFormModule } from './components/user-form/user-form.module';
 import { HabitDialogModule } from './components/habit-dialog/habit-dialog.module';
 import { HabitFormModule } from './components/habit-form/habit-form.module';
 import { HabitCardModule } from './components/habit-card/habit-card.module';
+import { MatButtonModule } from '@angular/material/button'; 
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ConfirmationDialogComponent],
   imports: [
     CommonModule,
     MainLayoutModule,
@@ -19,6 +21,8 @@ import { HabitCardModule } from './components/habit-card/habit-card.module';
     UserFormModule,
     HttpClientModule,
     HabitCardModule,
+    MatButtonModule
+    
   ],
   exports: [
     HttpClientModule,
@@ -26,6 +30,7 @@ import { HabitCardModule } from './components/habit-card/habit-card.module';
     HabitDialogModule,
     HabitFormModule,
     HabitCardModule,
+    ConfirmationDialogComponent
   ],
   providers: [AuthService],
 })

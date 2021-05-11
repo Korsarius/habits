@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 import { HabitDialogComponent } from 'src/app/shared/components/habit-dialog/habit-dialog.component';
 import { IHabit } from 'src/app/shared/interfaces';
@@ -31,7 +32,6 @@ export class MyHabitsPageComponent implements OnInit {
   ngOnInit(): void {
     this.auth.getHabits().subscribe(res => {
       this.allHabitsList = res;
-      console.log('all', this.allHabitsList);
       this.dataSource = new MatTableDataSource(this.allHabitsList);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -47,5 +47,30 @@ export class MyHabitsPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+
+  delete(habit: IHabit): void {
+    const confirmDialog = this.dialog.open(ConfirmationDialogComponent);
+    confirmDialog.afterClosed().subscribe(result => {
+      console.log('res', result);
+      if (result) {
+
+      }
+    })
+
+
+
+  }
+
+  updateTable(): void {
+    this.auth.getHabits().subscribe(res => {
+      this.allHabitsList = res;
+      this.dataSource = new MatTableDataSource(this.allHabitsList);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    },
+      err => console.log(err)
+    );
   }
 }
