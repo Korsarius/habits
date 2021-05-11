@@ -22,6 +22,7 @@ export interface IHabit {
   description: string;
   public: boolean;
   author: string;
+  hid?: string;
 }
 
 export interface FireAuthToken {
