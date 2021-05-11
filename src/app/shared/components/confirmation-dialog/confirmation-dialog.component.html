@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Confirm action</h1>
   <div mat-dialog-content>Are you sure you want to delete?</div>
   <div class="button-div">
-    <button class="yes-btn" mat-raised-button >Yes</button>
+    <button class="yes-btn" mat-raised-button (click)="delete(true)">Yes</button>
     <button mat-raised-button color="warn" (click)="cancel()">No</button>
   </div>
 </div>

@@ -26,7 +26,7 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     private realtimeDb: AngularFireDatabase, //Inject Realtime DataBase service
     public router: Router
-  ) {}
+  ) { }
 
   handleError(error: any): Observable<any> {
     console.log('error: ', error);
@@ -106,15 +106,46 @@ export class AuthService {
     const itemHabits = this.realtimeDb.list(`habits`);
     itemHabits.push(habit);
   }
-
+  //Метод для получения всех привычек
   getHabits(): Observable<any> {
     const habits = this.realtimeDb.list('habits').valueChanges();
     return habits;
+
   }
 
+  getHabit(): void {
+    
+    //  const itemRef = this.realtimeDb.list('habits');
+    // itemRef.snapshotChanges().subscribe(action => {
+    //   console.log(action.type);
+    //   console.log(action.key)
+    //   // console.log(action.payload.val())
+    // });
+    const itemsRef = this.realtimeDb.list('habits');
+    // Use snapshotChanges().map() to store the key
+    const items = itemsRef.snapshotChanges().pipe(map(changes => {
+      return changes.map(c => {
+        console.log(c.payload.key);
+        // return { key: c.payload.key, ...c.payload.val() }
+      });
+    })).subscribe();
+  }
+
+  // Метод для добавления новых привычек в MyHabits в Realtime DataBase
   addToMyHabits(habit: IHabit, user: IUser): void {
     const myHabits = this.realtimeDb.list(`users/${user.uid}/myHabits`);
     myHabits.push(habit);
-    
+
+  }
+  // Метод для удаления  привычки из MyHabits в Realtime DataBase
+  deleteMyHabit(habit: IHabit, user: IUser): Promise<void> {
+
+    const myHabit = this.realtimeDb.object(`users/${user.uid}/myHabits/${habit.hid}`);
+    return myHabit.remove();
+  }
+  // Метод для получения всех  привычек из MyHabits 
+  getMyHabits(user: IUser): Observable<any> {
+    const myHabits = this.realtimeDb.list(`users/${user.uid}/myHabitss`).valueChanges();
+    return myHabits;
   }
 }
