@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
@@ -19,6 +20,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class MyHabitsPageComponent implements OnInit {
   allHabitsList: Array<IHabit>;
   user: IUser;
+  valueFilter: string = '';
 
   displayedColumns: string[] = [
     'Index',
@@ -37,9 +39,11 @@ export class MyHabitsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
-
     this.updateTable();
+    
   }
+   
+ 
 
   openDialog() {
     const dialogRef = this.dialog.open(HabitDialogComponent);
@@ -77,8 +81,19 @@ export class MyHabitsPageComponent implements OnInit {
         this.dataSource = new MatTableDataSource(this.allHabitsList);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+
       },
       (err) => console.log(err)
     );
+  }
+
+  applyFilter($event): void{
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log( filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  claenFilter(): void{
+    this.valueFilter = '';
+    this.updateTable();
   }
 }

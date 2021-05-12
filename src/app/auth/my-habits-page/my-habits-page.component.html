@@ -2,8 +2,8 @@
   <div class="my-habits-input">
     <mat-form-field class="example-form-field">
       <mat-label>Filter</mat-label>
-      <input matInput name="valueFilter">
-      <button mat-button matSuffix mat-icon-button aria-label="">
+      <input matInput (keyup)="applyFilter($event)" [(ngModel)]="valueFilter" name="valueFilter">
+      <button mat-button *ngIf="valueFilter" matSuffix mat-icon-button aria-label="" (click)="claenFilter()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
