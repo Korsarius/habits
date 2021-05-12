@@ -12,10 +12,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { MyHabitsPageComponent } from './my-habits-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [MyHabitsPageComponent],
-  imports: [CommonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, SharedModule],
+  imports: [CommonModule, MatDialogModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatTableModule, MatPaginatorModule, SharedModule, FormsModule],
   exports: [MyHabitsPageComponent],
 })
 export class MyHabitsPageModule {}
