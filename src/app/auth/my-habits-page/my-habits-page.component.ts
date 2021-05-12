@@ -17,72 +17,68 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./my-habits-page.component.scss'],
 })
 export class MyHabitsPageComponent implements OnInit {
-
   allHabitsList: Array<IHabit>;
   user: IUser;
 
-
-  displayedColumns: string[] = ['Index', 'Habit Name', 'Frequency', 'Type', 'Public', 'Delete'];
+  displayedColumns: string[] = [
+    'Index',
+    'Habit Name',
+    'Frequency',
+    'Type',
+    'Public',
+    'Delete',
+  ];
   dataSource: MatTableDataSource<IHabit>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialog: MatDialog, private auth: AuthService) { }
-
+  constructor(public dialog: MatDialog, private auth: AuthService) {}
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('user'));
 
-    this.auth.getHabit();
-    
-    this.user= JSON.parse(localStorage.getItem('user'));
-    console.log('this.userData: ', this.user);
-
-    this.auth.getMyHabits(this.user).subscribe(res => {
-      console.log('res', res);
-      this.allHabitsList = res;
-      this.dataSource = new MatTableDataSource(this.allHabitsList);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    },
-      err => console.log(err)
-    );
+    this.updateTable();
   }
-
 
   openDialog() {
     const dialogRef = this.dialog.open(HabitDialogComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-
   openConfirmDialog(habit: IHabit, user: IUser): void {
-  
-    console.log(habit);
     const confirmDialog = this.dialog.open(ConfirmationDialogComponent);
-    confirmDialog.afterClosed().subscribe( async result => {
+    confirmDialog.afterClosed().subscribe(async (result) => {
       console.log('res', result);
       if (result) {
-       await this.auth.deleteMyHabit(habit, user);
-
+        await this.auth.deleteMyHabit(habit, user);
+        this.updateTable();
       }
-    })
-
-
-
+    });
   }
 
   updateTable(): void {
-  //   this.auth.getMyHabits().subscribe(res => {
-  //     this.allHabitsList = res;
-  //     this.dataSource = new MatTableDataSource(this.allHabitsList);
-  //     this.dataSource.sort = this.sort;
-  //     this.dataSource.paginator = this.paginator;
-  //   },
-  //     err => console.log(err)
-  //   );
+    this.auth.getMyHabitsId(this.user);
+    this.auth.getMyHabits(this.user).subscribe(
+      (res) => {
+        console.log('res', res);
+        this.allHabitsList = res;
+        this.allHabitsList.map((habit: IHabit, index: number) => {
+          JSON.parse(localStorage.getItem('myHabitsId')).map(
+            (id: string, i: number) => {
+              if (index === i) {
+                habit.hid = id;
+              }
+            }
+          );
+        });
+        this.dataSource = new MatTableDataSource(this.allHabitsList);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      },
+      (err) => console.log(err)
+    );
   }
 }
