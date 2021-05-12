@@ -5,7 +5,12 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
+import {
+  AngularFireDatabase,
+  AngularFireObject,
+  AngularFireList,
+  SnapshotAction,
+} from '@angular/fire/database';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -26,7 +31,7 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     private realtimeDb: AngularFireDatabase, //Inject Realtime DataBase service
     public router: Router
-  ) { }
+  ) {}
 
   handleError(error: any): Observable<any> {
     console.log('error: ', error);
@@ -79,73 +84,93 @@ export class AuthService {
 
   // Метод для добавления нового пользователя в Realtime DataBase
   recordUserData(uid: string, user?: IUser): Promise<void> {
-    const items = this.realtimeDb.list('users').set(uid, user);
+    const items: Promise<void> = this.realtimeDb.list('users').set(uid, user);
     return items;
   }
 
   // Метод для получения всех пользователей в Realtime DataBase
-  getUsers(): Observable<any> {
-    const users = this.realtimeDb.list('users').valueChanges();
+  getUsers(): Observable<IUser[]> {
+    const users: Observable<IUser[]> = this.realtimeDb
+      .list('users')
+      .valueChanges();
     return users;
   }
 
   // Метод для получения пользователя по ID в Realtime DataBase
-  getUser(uid: string): Observable<any> {
-    const user = this.realtimeDb.object(`users/${uid}`).valueChanges();
+  getUser(uid: string): Observable<IUser> {
+    const user: Observable<IUser> = this.realtimeDb
+      .object(`users/${uid}`)
+      .valueChanges();
     return user;
   }
 
   // Метод для обновления пользователя по ID в Realtime DataBase
   updateUser(user: IUser, uid: string): Promise<void> {
-    const itemUser = this.realtimeDb.object(`users/${uid}`);
+    const itemUser: AngularFireObject<IUser> = this.realtimeDb.object(
+      `users/${uid}`
+    );
     return itemUser.update(user);
   }
 
   // Метод для добавления новой привычки в habits в Realtime DataBase
-  addNewHabit(habit: IHabit): void {
-    const itemHabits = this.realtimeDb.list(`habits`);
+  addNewMyHabit(user: IUser, habit: IHabit): void {
+    // AngularFireList<IHabit[]>
+    const itemHabits = this.realtimeDb.list(`users/${user.uid}/myHabits`);
     itemHabits.push(habit);
   }
+
   //Метод для получения всех привычек
   getHabits(): Observable<any> {
-    const habits = this.realtimeDb.list('habits').valueChanges();
+    const habits: Observable<any> = this.realtimeDb
+      .list('habits')
+      .valueChanges();
     return habits;
-
   }
 
-  getHabit(): void {
-    
-    //  const itemRef = this.realtimeDb.list('habits');
-    // itemRef.snapshotChanges().subscribe(action => {
-    //   console.log(action.type);
-    //   console.log(action.key)
-    //   // console.log(action.payload.val())
-    // });
-    const itemsRef = this.realtimeDb.list('habits');
+  getMyHabitsId(user: IUser): void {
+    const itemsRef: AngularFireList<IHabit[]> = this.realtimeDb.list(
+      `users/${user.uid}/myHabits`
+    );
     // Use snapshotChanges().map() to store the key
-    const items = itemsRef.snapshotChanges().pipe(map(changes => {
-      return changes.map(c => {
-        console.log(c.payload.key);
-        // return { key: c.payload.key, ...c.payload.val() }
+    let myHabitsId: string[] = new Array();
+    itemsRef
+      .snapshotChanges()
+      .pipe(
+        map((changes: SnapshotAction<IHabit[]>[]) => {
+          return changes.map((habit: SnapshotAction<IHabit[]>) => {
+            myHabitsId.push(habit.payload.key);
+          });
+        })
+      )
+      .subscribe(() => {
+        myHabitsId = Array.from(new Set(myHabitsId));
+        setTimeout(() => {
+          console.log('myHabitsId: ', myHabitsId);
+          localStorage.setItem('myHabitsId', JSON.stringify(myHabitsId));
+        }, 500);
       });
-    })).subscribe();
   }
 
   // Метод для добавления новых привычек в MyHabits в Realtime DataBase
   addToMyHabits(habit: IHabit, user: IUser): void {
-    const myHabits = this.realtimeDb.list(`users/${user.uid}/myHabits`);
+    // AngularFireList<IHabit[]>
+    const myHabits: any = this.realtimeDb.list(`users/${user.uid}/myHabits`);
     myHabits.push(habit);
-
   }
+
   // Метод для удаления  привычки из MyHabits в Realtime DataBase
   deleteMyHabit(habit: IHabit, user: IUser): Promise<void> {
-
-    const myHabit = this.realtimeDb.object(`users/${user.uid}/myHabits/${habit.hid}`);
+    const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
+      `users/${user.uid}/myHabits/${habit.hid}`
+    );
     return myHabit.remove();
   }
-  // Метод для получения всех  привычек из MyHabits 
+
+  // Метод для получения всех  привычек из MyHabits
   getMyHabits(user: IUser): Observable<any> {
-    const myHabits = this.realtimeDb.list(`users/${user.uid}/myHabitss`).valueChanges();
+    const myHabits: Observable<any[]> = this.realtimeDb
+      .list(`users/${user.uid}/myHabits`)
+      .valueChanges();
     return myHabits;
   }
 }

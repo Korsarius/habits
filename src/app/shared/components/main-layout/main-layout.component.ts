@@ -16,12 +16,14 @@ export class MainLayoutComponent implements OnInit {
   isLoggenIn: boolean;
   userId: string | null;
   userName: string;
+  myHabitsId: string[];
 
   ngOnInit(): void {
     this.isLoggenIn = !!localStorage.getItem('user');
     this.userData = JSON.parse(localStorage.getItem('user'));
     this.userData ? (this.userId = this.userData.uid) : (this.userId = null);
     this.auth.getUser(this.userData.uid).subscribe(res => this.userName = res.firstName);
+    // localStorage.setItem('myHabitsId', this.auth.getMyHabitsId(this.userData));
   }
 
   logout() {

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { MatDialogRef } from '@angular/material/dialog';
 
-import { IHabit } from '../../interfaces';
+import { IHabit, IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 import { HabitDialogComponent } from '../habit-dialog/habit-dialog.component';
 
@@ -39,7 +39,8 @@ export class HabitFormComponent implements OnInit {
       public: true,
       author: '',
     };
-    this.auth.addNewHabit(habit);
+    const user: IUser = JSON.parse(localStorage.getItem('user'));
+    this.auth.addNewMyHabit(user, habit);
     this.dialogRef.close();
   }
 
