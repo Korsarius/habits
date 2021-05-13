@@ -1,8 +1,8 @@
-<mat-card *ngIf="habit" class="card-container">
+<mat-card *ngIf="habit" class="card-container" >
   <div class="card-header">
     <mat-card-title class="card-title">{{ habit.title }}</mat-card-title>
-    <mat-card-actions class="card-actions">
-      <button mat-button (click)="addToMyHabits()">
+    <mat-card-actions class="card-actions" >
+      <button mat-button (click)="addToMyHabits()" *ngIf="isLoggenIn">
         <mat-icon aria-label="Add icon">
           {{ !isAdded ? "add" : "remove" }}
         </mat-icon>
@@ -13,7 +13,19 @@
     <mat-card-subtitle class="card-subtitle">{{ "Frequency: " + habit.frequency }}</mat-card-subtitle>
   </div>
 
-  <mat-card-content class="card-content">{{
+  <mat-card-content class="card-content" *ngIf="!isLoggenIn">{{
     habit.description | slice: 0:200
   }}</mat-card-content>
+
+ 
+
+  <mat-card-content class="card-content" *ngIf="isLoggenIn" >{{
+    habit.description | slice: 0:200
+    
+  }}<span>...</span>
+
+ 
+
+</mat-card-content>
+  
 </mat-card>

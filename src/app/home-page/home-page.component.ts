@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { IUser } from '../shared/interfaces';
+import { IHabit, IUser } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class HomePageComponent implements OnInit {
   @ViewChild('upArrow') upArrow: any;
+  habits: IHabit[] = new Array<IHabit>();
   // upArrow = angular.element(document.querySelector("up-arrow"));
 
   userData: IUser;
@@ -28,5 +29,9 @@ export class HomePageComponent implements OnInit {
     //     upArrow.style = 'display: none';
     //   }
     // });
+    this.auth.getHabits().subscribe((res) => {
+      this.habits = res;
+      console.log(this.habits)
+    });
   }
 }

@@ -23,10 +23,16 @@
     }
   }
   .habits-items {
-    height: 500px;
+    height: 100%;
     width: 100%;
-    background-color: pink;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
     margin-top: 50px;
+    flex-grow: 1 1 1 1;
+    background-color: pink;
+    
   }
 }
 
