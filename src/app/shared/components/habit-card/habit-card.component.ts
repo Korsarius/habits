@@ -12,18 +12,25 @@ export class HabitCardComponent implements OnInit {
   @Input() habit: IHabit;
 
   habits: Array<IHabit> = new Array<IHabit>();
-  isAdded = false;
+  isAdded:boolean = false;
   user: IUser;
+  isLoggenIn:boolean;
+  isShow:boolean = false;
+  isCancel: boolean = false;
+  
 
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     console.log(this.habit);
     this.user = JSON.parse(localStorage.getItem('user'));
+    this.isLoggenIn = !!localStorage.getItem('user');
+    
   }
 
   addToMyHabits(): void {
     this.isAdded = !this.isAdded;
     this.auth.addToMyHabits(this.habit, this.user);
   }
+  
 }

@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 
+
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent implements OnInit {
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, ) {}
 
   userData: IUser | null;
   isLoggenIn: boolean;
@@ -28,10 +29,12 @@ export class MainLayoutComponent implements OnInit {
 
   logout() {
     // this.auth.SignOut();
+
     localStorage.clear();
     this.userData = null;
     this.isLoggenIn = false;
     this.router.navigate(['/']);
+    
   }
 
   onClick(): void {

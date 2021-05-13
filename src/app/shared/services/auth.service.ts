@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 import {
   AngularFireDatabase,
   AngularFireObject,
@@ -75,7 +76,7 @@ export class AuthService {
       });
   }
 
-  // // SignOut method for logging out from the Angular/Firebase app
+  // SignOut method for logging out from the Angular/Firebase app
   // SignOut(): Promise<void> {
   //   return this.afAuth.signOut().then(() => {
   //     this.router.navigate(['/']);
