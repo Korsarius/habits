@@ -155,7 +155,14 @@ export class AuthService {
     );
     myHabits.push(habit);
   }
-
+  
+  upDataMyHabit(habit: IHabit, user: IUser): void {
+    const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
+      `users/${user.uid}/myHabits/${habit.hid}`
+    );
+    myHabit.update(habit);
+  }
+  
   // Метод для удаления  привычки из MyHabits в Realtime DataBase
   deleteMyHabit(habit: IHabit, user: IUser): Promise<void> {
     const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
