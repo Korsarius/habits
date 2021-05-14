@@ -60,8 +60,10 @@ export class MyHabitsPageComponent implements OnInit {
     });
   }
 
-  openEditDialogWithHabitForm(habit: IHabit, user: IUser): void{
-    const confirmDialog = this.dialog.open(HabitDialogComponent, {data: habit, user});
+  openEditDialogWithHabitForm(habit: IHabit, user: IUser): void {
+    const confirmDialog = this.dialog.open(HabitDialogComponent, {
+      data: { habit, user },
+    });
     confirmDialog.afterClosed().subscribe(async (result) => {
       if (result) {
         await this.auth.upDataMyHabit(habit, user);

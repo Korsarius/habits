@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfilePageModule } from './profile-page/profile-page.module';
 import { MyHabitsPageModule } from './my-habits-page/my-habits-page.module';
 
-
 @NgModule({
   declarations: [],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ProfilePageModule, SharedModule, MyHabitsPageModule],
