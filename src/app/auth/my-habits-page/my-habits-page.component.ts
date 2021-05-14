@@ -40,12 +40,9 @@ export class MyHabitsPageComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.updateTable();
-    
   }
-   
- 
 
-  openDialog() {
+  openDialog(): void {
     const dialogRef = this.dialog.open(HabitDialogComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -55,7 +52,6 @@ export class MyHabitsPageComponent implements OnInit {
   openConfirmDialog(habit: IHabit, user: IUser): void {
     const confirmDialog = this.dialog.open(ConfirmationDialogComponent);
     confirmDialog.afterClosed().subscribe(async (result) => {
-      console.log('res', result);
       if (result) {
         await this.auth.deleteMyHabit(habit, user);
         this.updateTable();
@@ -65,34 +61,34 @@ export class MyHabitsPageComponent implements OnInit {
 
   updateTable(): void {
     this.auth.getMyHabitsId(this.user);
-    this.auth.getMyHabits(this.user).subscribe(
-      (res) => {
-        console.log('res', res);
-        this.allHabitsList = res;
-        this.allHabitsList.map((habit: IHabit, index: number) => {
-          JSON.parse(localStorage.getItem('myHabitsId')).map(
-            (id: string, i: number) => {
-              if (index === i) {
-                habit.hid = id;
+    setTimeout(() => {
+      this.auth.getMyHabits(this.user).subscribe(
+        (res) => {
+          this.allHabitsList = res;
+          this.allHabitsList.map((habit: IHabit, index: number) => {
+            JSON.parse(localStorage.getItem('myHabitsId')).map(
+              (id: string, i: number) => {
+                if (index === i) {
+                  habit.hid = id;
+                }
               }
-            }
-          );
-        });
-        this.dataSource = new MatTableDataSource(this.allHabitsList);
-        this.dataSource.sort = this.sort;
-        this.dataSource.paginator = this.paginator;
-
-      },
-      (err) => console.log(err)
-    );
+            );
+          });
+          this.dataSource = new MatTableDataSource(this.allHabitsList);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+        },
+        (err) => console.log(err)
+      );
+    }, 1000);
   }
 
-  applyFilter($event): void{
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log( filterValue)
+  applyFilter($event: KeyboardEvent): void {
+    const filterValue = ($event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  claenFilter(): void{
+
+  claenFilter(): void {
     this.valueFilter = '';
     this.updateTable();
   }
