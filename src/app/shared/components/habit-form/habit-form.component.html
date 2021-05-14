@@ -1,5 +1,5 @@
 <div class="habit-form-wrapper">
-  <h3>Add Habit</h3>
+  <h3>{{habit ? "Edit Habit" : "Add Habit"}} </h3>
   <form class="form" [formGroup]="form" (ngSubmit)="onSave()">
     <mat-form-field appearance="fill">
       <mat-label>Enter Habit title</mat-label>
@@ -49,7 +49,7 @@
         [ngClass]="{ disabled: form.invalid, 'disbled:hover': form.invalid }"
         [disabled]="form.invalid"
       >
-        Save
+        Save 
       </button>
       <!-- *ngIf="userData && isEdit" -->
       <button class="habit-form-btn" type="button" (click)="onClose()">

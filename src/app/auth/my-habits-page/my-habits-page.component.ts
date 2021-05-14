@@ -66,7 +66,7 @@ export class MyHabitsPageComponent implements OnInit {
     });
     confirmDialog.afterClosed().subscribe(async (result) => {
       if (result) {
-        await this.auth.upDataMyHabit(habit, user);
+        // await this.auth.updateMyHabit(habit, user);
         this.updateTable();
       }
     });

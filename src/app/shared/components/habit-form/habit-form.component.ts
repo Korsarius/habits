@@ -32,24 +32,42 @@ export class HabitFormComponent implements OnInit {
 
   buildForm(): void {
     this.form = new FormGroup({
-      title: new FormControl(null, [
+      title: new FormControl(this.habit ? this.habit.title : null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      type: new FormControl(null),
-      frequency: new FormControl(null),
-      description: new FormControl(null),
+      type: new FormControl(this.habit ? this.habit.type : null),
+      frequency: new FormControl(this.habit ? this.habit.frequency : null),
+      description: new FormControl(this.habit ? this.habit.description : null, [
+        Validators.maxLength(10000),
+      ]),
     });
   }
 
+
   onSave(): void {
-    const habit: IHabit = {
-      ...this.form.value,
-      public: true,
-      author: '',
-    };
     const user: IUser = JSON.parse(localStorage.getItem('user'));
-    this.auth.addNewMyHabit(user, habit);
+
+    if (this.habit) {
+      const editedHabit: IHabit = {
+
+        ...this.form.value,
+        public: true,
+        hid: this.habit.hid,
+      };
+
+      this.auth.updateMyHabit(editedHabit, user);
+    } else {
+      const habit: IHabit = {
+        ...this.form.value,
+        public: true,
+        author: '',
+      };
+
+      this.auth.addNewMyHabit(user, habit);
+    }
+
+
     this.dialogRef.close();
   }
 
