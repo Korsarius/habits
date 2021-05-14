@@ -30,13 +30,10 @@ export class MainLayoutComponent implements OnInit {
     // localStorage.setItem('myHabitsId', this.auth.getMyHabitsId(this.userData));
   }
 
-  logout() {
-    // this.auth.SignOut();
-
-    localStorage.clear();
+  logout(): void {
     this.userData = null;
     this.isLoggenIn = false;
-    this.router.navigate(['/']);
+    this.auth.SignOut();
   }
 
   onClick(): void {

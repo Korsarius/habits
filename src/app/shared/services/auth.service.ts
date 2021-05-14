@@ -23,10 +23,6 @@ import { IHabit, IUser } from '../../shared/interfaces';
 export class AuthService {
   userData: IUser | null;
 
-  private httpOption = {
-    headers: new HttpHeaders({ 'Content-Type': 'aplication/json' }),
-  };
-
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -40,7 +36,7 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email: string, password: string): Promise<void> {
+  async SignIn(email: string, password: string): Promise<void> {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
@@ -64,7 +60,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  SignUp(email: string, password: string, user: IUser): Promise<void> {
+  async SignUp(email: string, password: string, user: IUser): Promise<void> {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then(async (result) => {
@@ -77,11 +73,10 @@ export class AuthService {
   }
 
   // SignOut method for logging out from the Angular/Firebase app
-  // SignOut(): Promise<void> {
-  //   return this.afAuth.signOut().then(() => {
-  //     this.router.navigate(['/']);
-  //   });
-  // }
+  SignOut(): void {
+    localStorage.clear();
+    this.router.navigate(['/']);
+  }
 
   // Метод для добавления нового пользователя в Realtime DataBase
   recordUserData(uid: string, user?: IUser): Promise<void> {
@@ -115,12 +110,13 @@ export class AuthService {
 
   // Метод для добавления новой привычки в habits в Realtime DataBase
   addNewMyHabit(user: IUser, habit: IHabit): void {
-    // AngularFireList<IHabit[]>
-    const itemHabits = this.realtimeDb.list(`users/${user.uid}/myHabits`);
+    const itemHabits: AngularFireList<IHabit> = this.realtimeDb.list(
+      `users/${user.uid}/myHabits`
+    );
     itemHabits.push(habit);
   }
 
-  //Метод для получения всех привычек
+  // Метод для получения всех привычек
   getHabits(): Observable<any> {
     const habits: Observable<any> = this.realtimeDb
       .list('habits')
@@ -154,8 +150,9 @@ export class AuthService {
 
   // Метод для добавления новых привычек в MyHabits в Realtime DataBase
   addToMyHabits(habit: IHabit, user: IUser): void {
-    // AngularFireList<IHabit[]>
-    const myHabits: any = this.realtimeDb.list(`users/${user.uid}/myHabits`);
+    const myHabits: AngularFireList<IHabit> = this.realtimeDb.list(
+      `users/${user.uid}/myHabits`
+    );
     myHabits.push(habit);
   }
 
@@ -169,7 +166,7 @@ export class AuthService {
 
   // Метод для получения всех  привычек из MyHabits
   getMyHabits(user: IUser): Observable<any> {
-    const myHabits: Observable<any[]> = this.realtimeDb
+    const myHabits: Observable<any> = this.realtimeDb
       .list(`users/${user.uid}/myHabits`)
       .valueChanges();
     return myHabits;
