@@ -155,8 +155,9 @@ export class AuthService {
     );
     myHabits.push(habit);
   }
-  
-  upDataMyHabit(habit: IHabit, user: IUser): void {
+
+  updateMyHabit(habit: IHabit, user: IUser): void {
+    console.log(habit.hid);
     const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
       `users/${user.uid}/myHabits/${habit.hid}`
     );
