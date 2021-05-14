@@ -33,4 +33,12 @@ export class HabitCardComponent implements OnInit {
     this.auth.addToMyHabits(this.habit, this.user);
   }
   
+  toggleVisibility(): void{
+    this.isShow = true;
+  }
+
+  toggleCancel(): void{
+    this.isCancel= true;
+    this.isShow = false;
+  }
 }
