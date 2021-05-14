@@ -9,6 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 import { HabitDialogComponent } from 'src/app/shared/components/habit-dialog/habit-dialog.component';
+import { HabitFormComponent } from 'src/app/shared/components/habit-form/habit-form.component';
 import { IHabit, IUser } from 'src/app/shared/interfaces';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -54,6 +55,16 @@ export class MyHabitsPageComponent implements OnInit {
     confirmDialog.afterClosed().subscribe(async (result) => {
       if (result) {
         await this.auth.deleteMyHabit(habit, user);
+        this.updateTable();
+      }
+    });
+  }
+
+  openEditDialogWithHabitForm(habit: IHabit, user: IUser): void{
+    const confirmDialog = this.dialog.open(HabitDialogComponent, {data: habit, user});
+    confirmDialog.afterClosed().subscribe(async (result) => {
+      if (result) {
+        await this.auth.upDataMyHabit(habit, user);
         this.updateTable();
       }
     });

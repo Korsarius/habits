@@ -13,8 +13,12 @@ import { HabitDialogComponent } from '../habit-dialog/habit-dialog.component';
   styleUrls: ['./habit-form.component.scss'],
 })
 export class HabitFormComponent implements OnInit {
+
+  @Input() habit: IHabit;
+
   form: FormGroup;
   types: Array<String> = ['Health', 'Sport', 'Life', 'Work', 'Food','Other'];
+
 
   constructor(private auth: AuthService, private dialogRef: MatDialogRef<HabitDialogComponent>) {
     this.dialogRef.disableClose = true;
@@ -22,13 +26,14 @@ export class HabitFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    console.log(this.habit);
   }
 
   buildForm(): void {
     this.form = new FormGroup({
       title: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      type: new FormControl(null),
-      frequency: new FormControl(null),
+      type: new FormControl( null),
+      frequency: new FormControl( null),
       description: new FormControl(null),
     });
   }

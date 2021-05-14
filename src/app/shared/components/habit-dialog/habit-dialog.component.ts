@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IHabit, IUser } from '../../interfaces';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-habit-dialog',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HabitDialogComponent implements OnInit {
 
-  constructor() { }
+
+  userHabit: IHabit;
+
+  constructor(private dialogRef: MatDialogRef<HabitDialogComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: {habit: IHabit, user: IUser}, ) { }
 
   ngOnInit(): void {
+    this.userHabit = this.data.habit;
   }
 
 }
