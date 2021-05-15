@@ -1,3 +1,4 @@
+@import "../../styles.scss";
 p {
   margin-top: 200px;
 }
@@ -8,6 +9,22 @@ p {
   margin: 130px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-
+    .example-button-row{
+      width: 100%; 
+      display: flex;
+      justify-content: center;
+      align-self:flex-end;
+      .load-more-btn{
+        background-color: $bc-orange;
+        color: $txt-c-white;
+      }
+      .load-more-btn:hover{
+        color: $txt-c-orange;
+        background-color: $bc-white;
+      }
+    margin-bottom: 20px;  
+  }
+}
+.habits-wrapper:nth-child(3n){
+  margin-right: 0 !important;
 }
