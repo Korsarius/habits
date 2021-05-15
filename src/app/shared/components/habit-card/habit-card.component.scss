@@ -1,7 +1,12 @@
 @import "../../../../styles.scss";
+
+// .card-container:nth-child(3n) {
+//   margin-right: 0;
+// }
+
 .card-container {
-  width: 350px;
-  height: 230px;
+  width: 358px;
+  height: 238px;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 15px;
@@ -35,24 +40,23 @@
   .card-content {
     flex: 0 1 100%;
   }
-  .see-more-btn{
+  .see-more-btn {
     display: flex;
-    align-self:flex-end;
+    align-self: flex-end;
     background-color: $bc-orange;
   }
-  .see-more-btn:hover{
+  .see-more-btn:hover {
     color: $txt-c-orange;
     background-color: $bc-white;
   }
 }
-.card-container-bg{
+.card-container-bg {
   width: 350px;
   height: 420px;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 15px;
-  
 }
-.card-container:nth-of-type(3n) {
-  margin-right: 0;
-}
+// .card-container:nth-of-type(3n) {
+//   margin-right: 0;
+// }

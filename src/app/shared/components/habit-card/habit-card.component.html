@@ -1,7 +1,11 @@
-<mat-card *ngIf="habit" class="card-container" [class.card-container-bg]="isShow">
+<mat-card
+  *ngIf="habit"
+  class="card-container"
+  [class.card-container-bg]="isShow"
+>
   <div class="card-header">
     <mat-card-title class="card-title">{{ habit.title }}</mat-card-title>
-    <mat-card-actions class="card-actions" >
+    <mat-card-actions class="card-actions">
       <button mat-button (click)="addToMyHabits()" *ngIf="isLoggenIn">
         <mat-icon aria-label="Add icon">
           {{ !isAdded ? "add" : "remove" }}
@@ -9,29 +13,39 @@
       </button>
     </mat-card-actions>
 
-    <mat-card-subtitle class="card-subtitle">{{ "Type: " + habit.type }}</mat-card-subtitle>
-    <mat-card-subtitle class="card-subtitle">{{ "Frequency: " + habit.frequency }}</mat-card-subtitle>
+    <mat-card-subtitle class="card-subtitle">{{
+      "Type: " + habit.type
+    }}</mat-card-subtitle>
+    <mat-card-subtitle class="card-subtitle">{{
+      "Frequency: " + habit.frequency
+    }}</mat-card-subtitle>
   </div>
 
   <mat-card-content class="card-content" *ngIf="!isLoggenIn">{{
     habit.description | slice: 0:200
   }}</mat-card-content>
 
- 
+  <mat-card-content class="card-content" *ngIf="isLoggenIn"
+    >{{ habit.description | slice: 0:200 }}<span>...</span>
 
-  <mat-card-content class="card-content" *ngIf="isLoggenIn" >{{
-    habit.description | slice: 0:200
-    
-  }}<span>...</span>
-
-  <div *ngIf="isShow">
-    {{ habit.description | slice: 200:10000}}
-  </div>
-  
-  
-  
-</mat-card-content>
-<button mat-button class="see-more-btn" *ngIf="!isShow" (click)="toggleVisibility()" >See more...</button> 
-  <button mat-button class="see-more-btn" *ngIf="isShow" (click)="toggleCancel()">Roll up</button> 
-  
+    <div *ngIf="isShow">
+      {{ habit.description | slice: 200:10000 }}
+    </div>
+  </mat-card-content>
+  <button
+    mat-button
+    class="see-more-btn"
+    *ngIf="!isShow"
+    (click)="toggleVisibility()"
+  >
+    See more...
+  </button>
+  <button
+    mat-button
+    class="see-more-btn"
+    *ngIf="isShow"
+    (click)="toggleCancel()"
+  >
+    Roll up
+  </button>
 </mat-card>
