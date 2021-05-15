@@ -1,3 +1,6 @@
 <div class="habits-wrapper">
-  <app-habit-card *ngFor="let habit of habits" [habit]="habit"></app-habit-card>
+  <app-habit-card *ngFor="let habit of selectedHabits" [habit]="habit"></app-habit-card>
+  <div  class="example-button-row" *ngIf="selectedHabits">
+    <button class="load-more-btn" mat-raised-button color="accent" (click)="isShowRollUpButton() ? loadMore() : rollUp() "> {{ isShowRollUpButton() ? "Load More" : "Roll Up"}}</button>
+  </div>
 </div>
