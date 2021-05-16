@@ -1,6 +1,42 @@
+<div class="filter-container">
+  <form class="search-form">
+    <mat-form-field class="filter-field">
+      <mat-label>Filter by type or name</mat-label>
+      <input
+        matInput
+        #filterInput
+        placeholder="Ex. health"
+        [formControl]="filterControl"
+      />
+      <button
+        mat-button
+        *ngIf="filterInput.value"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearFilter(); filterInput.value = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
+
 <div class="habits-wrapper">
-  <app-habit-card *ngFor="let habit of selectedHabits" [habit]="habit"></app-habit-card>
-  <div  class="example-button-row" *ngIf="selectedHabits">
-    <button class="load-more-btn" mat-raised-button color="accent" (click)="isShowRollUpButton() ? loadMore() : rollUp() "> {{ isShowRollUpButton() ? "Load More" : "Roll Up"}}</button>
+  <app-habit-card
+    *ngFor="let habit of filteredHabits.length === 0 ? trimmedHabits : filteredHabits"
+    [habit]="habit"
+  ></app-habit-card>
+
+  <div class="example-button-row">
+    <button
+      class="load-more-btn"
+      mat-raised-button
+      color="accent"
+      *ngIf="trimmedHabits.length > 5 && !notFound"
+      (click)="habits.length !== trimmedHabits.length ? loadMore() : rollUp()"
+    >
+      {{ habits.length === trimmedHabits.length ? "Roll Up" : "Load More"  }}
+    </button>
   </div>
 </div>

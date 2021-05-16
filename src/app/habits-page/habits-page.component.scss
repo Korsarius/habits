@@ -1,27 +1,34 @@
 @import "../../styles.scss";
 
-p {
-  margin-top: 200px;
+.filter-container {
+  margin-top: 70px;
+  margin-left: 50px;
+  background-color: $bc-gray;
+  width: 200px;
 }
 
 .habits-wrapper {
   width: 1200px;
-  margin: 130px auto 0 auto;
+  margin: 20px auto 0 auto;
   display: flex;
   flex-wrap: wrap;
+
   .example-button-row {
     width: 100%;
     display: flex;
     justify-content: center;
     align-self: flex-end;
+
     .load-more-btn {
       background-color: $bc-orange;
       color: $txt-c-white;
     }
+
     .load-more-btn:hover {
       color: $txt-c-orange;
       background-color: $bc-white;
     }
+
     margin-bottom: 20px;
   }
 }
