@@ -5,6 +5,40 @@
     text-align: center;
   }
   .form-container {
+    ::ng-deep {
+      .mat-input-element {
+        caret-color: $txt-c-orange;
+      }
+    }
+    ::ng-deep .mat-focused .mat-form-field-label {
+      /*change color of label*/
+      color: $bc-dark-goldenrod;
+    }
+
+    ::ng-deep.mat-form-field-underline {
+      /*change color of underline*/
+      background-color: $bc-dark-goldenrod;
+    }
+
+    ::ng-deep.mat-form-field-ripple {
+      /*change color of underline when focused*/
+      background-color: $bc-dark-goldenrod;
+    }
+    .mat-radio-group {
+      ::ng-deep {
+        .mat-radio-outer-circle {
+          border-color: $bc-btn-orange;
+        }
+        .mat-radio-inner-circle {
+          background-color: $bc-btn-orange;
+        }
+      }
+    }
+    ::ng-deep {
+      .mat-form-field-label {
+        color: $txt-c-input-placeholder;
+      }
+    }
     .mat-form-field {
       width: 300px;
     }
@@ -38,7 +72,7 @@
 
       color: $txt-c-white;
       border-radius: 20px;
-      background-color: $bc-orange;
+      background-color: $bc-btn-orange;
       box-shadow: 3px 3px 10px $sh-c-black;
       transition: all 0.1s ease-in-out;
     }
@@ -46,5 +80,21 @@
       color: $txt-c-orange;
       background-color: $bc-white;
     }
+  }
+}
+
+::ng-deep {
+  .mat-datepicker-toggle .mat-icon-button {
+    color: $txt-c-btn-orange;
+  }
+  .mat-datepicker-toggle .mat-icon-button:hover {
+    border-radius: 50%;
+    background-color: rgba(218, 165, 32, 0.3);
+  }
+  .mat-calendar {
+    background-color: #092657;
+  }
+  .mat-calendar-body-selected {
+    background-color: $bc-btn-orange;
   }
 }

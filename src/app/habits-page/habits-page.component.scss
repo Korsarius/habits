@@ -1,10 +1,40 @@
 @import "../../styles.scss";
 
 .filter-container {
-  margin-top: 70px;
+  margin-top: 100px;
   margin-left: 50px;
-  background-color: $bc-gray;
+  background-color: $bc-dark-blue;
   width: 200px;
+
+  ::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: $bc-dark-goldenrod;
+  }
+
+  ::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: $bc-dark-goldenrod;
+  }
+
+  ::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: $bc-dark-goldenrod;
+  }
+
+  .search-form {
+    .mat-form-field {
+      .filter-label {
+        color: $txt-c-input-placeholder;
+      }
+      .mat-input-element {
+        caret-color: $txt-c-orange;
+        color: $txt-c-white;
+      }
+      .mat-button {
+        color: $txt-c-white;
+      }
+    }
+  }
 }
 
 .habits-wrapper {

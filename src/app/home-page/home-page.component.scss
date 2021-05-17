@@ -31,7 +31,14 @@
     justify-content: space-around;
     margin-top: 50px;
     flex-grow: 1 1 1 1;
-    
+    .habit-card {
+      transition: all 0.3s ease-in-out;
+    }
+
+    .habit-card:hover {
+      cursor: pointer;
+      transform: translateY(-20px);
+    }
   }
 }
 

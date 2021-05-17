@@ -7,9 +7,10 @@
     width: 500px;
     height: 300px;
     padding: 20px 0;
-    background-color: $bc-gray;
+    background: transparent;
+    border: 3px solid $bc-btn-orange;
     border-radius: 25px;
-    box-shadow: 3px 3px 10px $sh-c-black;
+    box-shadow: 5px 5px 40px $sh-c-dark-orange;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -22,9 +23,31 @@
         font-family: "Regular";
       }
       .form-container {
+        ::ng-deep {
+          .mat-input-element {
+            caret-color: $txt-c-orange;
+          }
+        }
+        ::ng-deep .mat-focused .mat-form-field-label {
+          /*change color of label*/
+          color: $bc-dark-goldenrod;
+        }
+
+        ::ng-deep.mat-form-field-underline {
+          /*change color of underline*/
+          background-color: $bc-dark-goldenrod;
+        }
+
+        ::ng-deep.mat-form-field-ripple {
+          /*change color of underline when focused*/
+          background-color: $bc-dark-goldenrod;
+        }
         .mat-form-field {
           width: 100%;
           margin-bottom: 7px;
+          .form-input {
+            color: $txt-c-white;
+          }
           .hide-password-btn {
             width: 35px;
             height: 35px;
@@ -34,11 +57,12 @@
             cursor: pointer;
             .mat-icon {
               margin-top: 2px;
+              color: $txt-c-btn-orange;
             }
           }
           .hide-password-btn:hover {
             border-radius: 50%;
-            background-color: $bc-gray;
+            background-color: rgba(218, 165, 32, 0.3);
           }
           .error-hint {
             color: $txt-c-red;
@@ -57,7 +81,7 @@
 
           color: $txt-c-white;
           border-radius: 20px;
-          background-color: $bc-orange;
+          background-color: $bc-btn-orange;
           box-shadow: 3px 3px 10px $sh-c-black;
           transition: all 0.1s ease-in-out;
         }
@@ -68,18 +92,24 @@
         .disabled {
           cursor: default;
           color: rgba(255, 255, 255, 0.5);
-          background-color: rgba(231, 227, 227, 0.7);
+          background-color: rgba(218, 165, 32, 0.3);
         }
         .disabled:hover {
           cursor: default;
           color: rgba(255, 255, 255, 0.5);
-          background-color: rgba(231, 227, 227, 0.7);
+          background-color: rgba(218, 165, 32, 0.3);
         }
       }
       .login-control {
         display: flex;
         align-items: center;
         flex-direction: column;
+        p {
+          color: $txt-c-white;
+          a {
+            color: $bc-goldenrod;
+          }
+        }
       }
     }
   }
