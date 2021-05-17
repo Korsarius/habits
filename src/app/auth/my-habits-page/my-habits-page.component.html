@@ -2,62 +2,88 @@
   <div class="my-habits-input">
     <mat-form-field class="example-form-field">
       <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" [(ngModel)]="valueFilter" name="valueFilter">
-      <button mat-button *ngIf="valueFilter" matSuffix mat-icon-button aria-label="" (click)="claenFilter()">
+      <input
+        matInput
+        (keyup)="applyFilter($event)"
+        [(ngModel)]="valueFilter"
+        name="valueFilter"
+      />
+      <button
+        mat-button
+        *ngIf="valueFilter"
+        matSuffix
+        mat-icon-button
+        aria-label=""
+        (click)="claenFilter()"
+      >
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <section><button class="habit-dialog-btn" (click)="openDialog()">Add new Habit</button></section>
-
+    <section>
+      <button class="habit-dialog-btn" (click)="openDialog()">
+        Add new Habit
+      </button>
+    </section>
   </div>
 
   <div class="mat-elevation-z8 my-habits-table">
     <table class="table" mat-table [dataSource]="dataSource" matSort>
       <ng-container matColumnDef="Index">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-        <td mat-cell *matCellDef="let habit; let i = index">{{ i+1 }}</td>
+        <td mat-cell *matCellDef="let habit; let i = index">{{ i + 1 }}</td>
       </ng-container>
 
       <ng-container matColumnDef="Habit Name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Habit Name</th>
-        <td mat-cell *matCellDef="let habit">{{habit.title}}</td>
+        <td mat-cell *matCellDef="let habit">{{ habit.title }}</td>
       </ng-container>
 
       <ng-container matColumnDef="Frequency">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency</th>
-        <td mat-cell *matCellDef="let habit">{{habit.frequency}}</td>
+        <td mat-cell *matCellDef="let habit">{{ habit.frequency }}</td>
       </ng-container>
 
       <ng-container matColumnDef="Type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
-        <td mat-cell *matCellDef="let habit">{{habit.type}}</td>
+        <td mat-cell *matCellDef="let habit">{{ habit.type }}</td>
       </ng-container>
-
 
       <ng-container matColumnDef="Public">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Public</th>
-        <td mat-cell *matCellDef="let habit">{{habit.public}}</td>
+        <td mat-cell *matCellDef="let habit">{{ habit.public }}</td>
       </ng-container>
 
       <ng-container matColumnDef="Delete">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let habit">
-
           <button mat-icon-button>
-            <mat-icon aria-hidden="false" (click)="openEditDialogWithHabitForm(habit, user)" aria-label="Example home icon">edit</mat-icon>
+            <mat-icon
+              class="edit-btn"
+              aria-hidden="false"
+              (click)="openEditDialogWithHabitForm(habit, user)"
+              aria-label="Example home icon"
+              >edit</mat-icon
+            >
           </button>
           <button mat-icon-button (click)="openConfirmDialog(habit, user)">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+            <mat-icon
+              class="delete-btn"
+              aria-hidden="false"
+              aria-label="Example home icon"
+              >delete</mat-icon
+            >
           </button>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
     <div>
-      <mat-paginator class="pagination" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+      <mat-paginator
+        class="pagination"
+        [pageSizeOptions]="[5, 10, 20]"
+      ></mat-paginator>
     </div>
   </div>
+</div>

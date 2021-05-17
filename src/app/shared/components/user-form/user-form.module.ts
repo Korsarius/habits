@@ -6,6 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { UserFormComponent } from './user-form.component';
 
@@ -18,9 +20,11 @@ import { UserFormComponent } from './user-form.component';
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   entryComponents: [UserFormComponent],
   exports: [UserFormComponent],
 })
-export class UserFormModule { }
+export class UserFormModule {}

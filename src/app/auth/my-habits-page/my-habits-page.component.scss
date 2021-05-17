@@ -1,32 +1,34 @@
 @import "../../../styles.scss";
-.my-habits-container{
-  width: 100%;
-  background-color: $bc-dark-gray;
-  padding-bottom: 100px;
 
- 
-    .my-habits-input{
-      display: flex;
-      justify-content: space-between;
-      padding-right: 200px;
-      padding-left: 50px;
-      padding-top: 188px;
-      padding-bottom: 95px;
-    
-    
+.my-habits-container {
+  width: 100%;
+  background-color: $bc-dark-blue;
+
+  .my-habits-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 200px;
+    padding-left: 50px;
+    padding-top: 125px;
+    padding-bottom: 65px;
+
+    input {
+      color: $txt-c-white;
+    }
+
     .habit-dialog-btn {
       width: 200px;
       height: 35px;
       outline: none;
       font-size: 24px;
-      // margin-top: 100px;
       font-family: "Regular";
       cursor: pointer;
       border: none;
 
       color: $txt-c-white;
       border-radius: 20px;
-      background-color: $bc-orange;
+      background-color: $bc-btn-orange;
       box-shadow: 3px 3px 10px $sh-c-black;
       transition: all 0.1s ease-in-out;
     }
@@ -35,20 +37,43 @@
       background-color: $bc-white;
     }
   }
-  .my-habits-table{
+  .my-habits-table {
     width: 1150px;
     margin: 0 auto;
     margin-bottom: 100px;
-   
-    .table{
+
+    .table {
       width: 100%;
       height: 100%;
-      td, th{
+      background: $bc-table;
+      td,
+      th {
         width: 15%;
       }
+      .mat-cell {
+        .mat-icon-button {
+          .edit-btn {
+            padding: 5px;
+            color: $txt-c-btn-orange;
+          }
+          .edit-btn:hover {
+            border-radius: 50%;
+            background-color: rgba(218, 165, 32, 0.3);
+          }
+          .delete-btn {
+            padding: 5px;
+            color: $txt-c-crimson;
+          }
+          .delete-btn:hover {
+            border-radius: 50%;
+            background-color: rgba(218, 32, 32, 0.3);
+          }
+        }
+      }
     }
-    .pagination{
+    .pagination {
       width: 100%;
+      background: $bc-table;
     }
   }
 }

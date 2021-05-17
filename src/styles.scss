@@ -15,6 +15,11 @@ p {
 // $bc-lightgray: #d3d3d3;
 // $bc-purple: #512da7;
 // $bc-white: #fff;
+$bc-dark-blue: #141d2d;
+$bc-dark-goldenrod: #b8860b;
+$bc-goldenrod:#daa520;
+$bc-table: repeating-linear-gradient(45deg, black, transparent 100px);
+$bc-btn-orange: #ffa500;
 $bc-green: #5a8100;
 $bc-orange: #ff6c02;
 $bc-yellow: #ffb400;
@@ -26,9 +31,12 @@ $bc-white: #fff;
 /* text */
 $txt-c-black: #000;
 $txt-c-white: #fff;
+$txt-c-btn-orange: $bc-btn-orange;
+$txt-c-input-placeholder: $bc-dark-goldenrod;
 $txt-c-yellow: #ffdc77;
 $txt-c-darkblue: #0000ff;
 $txt-c-red: #f60909f5;
+$txt-c-crimson: #ed143d;
 $txt-c-beige: $bc-beige;
 $txt-c-orange: $bc-orange;
 // $txt-c-grey: #808080;
@@ -42,6 +50,7 @@ $b-c-black: #000;
 // $b-c-lightgray: #dbdbdb;
 // $b-c-purple: #512da7;
 /* shadow */
+$sh-c-dark-orange: $bc-dark-goldenrod;
 $sh-c-black: #000;
 
 html,

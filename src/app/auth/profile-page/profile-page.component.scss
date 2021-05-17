@@ -13,8 +13,10 @@
     align-items: center;
     padding: 25px 0;
     color: $txt-c-white;
-    background-color: $bc-dark-gray;
+    background-color: transparent;
+    border: 3px solid $bc-btn-orange;
     border-radius: 25px;
+    box-shadow: 5px 5px 40px $sh-c-dark-orange;
     .user-info {
       padding: 10px;
       list-style: none;

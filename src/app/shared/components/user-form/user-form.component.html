@@ -77,14 +77,25 @@
         <mat-label>{{
           userData ? "Birth Date:" : "Enter your Birth Date:"
         }}</mat-label>
+
         <input
+          class="form-input"
+          placeholder="Select your Birth date"
+          matInput
+          [matDatepicker]="picker"
+          formControlName="birthDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <!-- <input
           [readonly]="userData && !isEdit"
           class="form-input"
           matInput
           placeholder="Select your Birth date"
           formControlName="birthDate"
           type="date"
-        />
+        /> -->
       </mat-form-field>
     </div>
 
@@ -131,7 +142,10 @@
     </mat-form-field>
   </div>
 
-  <div class="form-container login-control" [ngStyle]="isEdit && {'justify-content':'space-between'}">
+  <div
+    class="form-container login-control"
+    [ngStyle]="isEdit && { 'justify-content': 'space-between' }"
+  >
     <button
       *ngIf="userData && !isEdit"
       class="submit-btn"
@@ -148,11 +162,7 @@
     >
       Cancel
     </button>
-    <button
-      *ngIf="userData && isEdit"
-      class="submit-btn"
-      type="submit"
-    >
+    <button *ngIf="userData && isEdit" class="submit-btn" type="submit">
       Save
     </button>
   </div>

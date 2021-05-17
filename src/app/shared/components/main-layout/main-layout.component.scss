@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: $bc-beige;
+  background-color: $bc-dark-blue;
   .main-header {
     position: fixed;
     height: 60px;
@@ -14,14 +14,17 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10px 0 14px;
-    background-color: #5a8100;
+    color: $txt-c-white;
+    background-color: $bc-dark-blue;
+    border-bottom: 2px solid $bc-btn-orange;
+    box-shadow: 0 5px 20px $bc-btn-orange;
     z-index: 100;
     .main-header-title {
+      transform: translateX(50%);
       .main-header-text {
-        margin-left: 70px;
         font-family: "Playball-Regular";
         font-size: 48px;
-        color: $txt-c-beige;
+        color: $txt-c-white;
         vertical-align: sub;
       }
     }
@@ -31,15 +34,15 @@
         vertical-align: bottom;
       }
       .active {
-        color: $txt-c-beige;
+        color: $txt-c-orange;
       }
     }
   }
 
   .main {
-    background-color: $bc-beige;
-    background-image: url("../../../../assets/images/home-background.png");
-    background-size: contain;
+    background-color: $bc-dark-blue;
+    // background-image: url("../../../../assets/images/home-background.png");
+    // background-size: contain;
     .container {
       // margin-top: 100px;
     }
@@ -50,19 +53,21 @@
     padding: 20px 0;
     display: flex;
     align-items: center;
-    background-color: $bc-green;
+    background-color: $bc-dark-blue;
+    border-top: 1px solid $bc-btn-orange;
+    box-shadow: 0 -2px 20px $bc-btn-orange;
     .copyright {
       width: 100%;
       text-align: center;
-      color: $txt-c-beige;
+      color: $txt-c-white;
     }
   }
 
   .about-link {
     text-decoration: none;
-    color: $txt-c-black;
+    color: $txt-c-white;
   }
   .about-link:active {
-    color: $txt-c-beige;
+    color: $txt-c-orange;
   }
 }
