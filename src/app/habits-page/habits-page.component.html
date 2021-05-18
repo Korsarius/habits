@@ -24,7 +24,10 @@
 
 <div class="habits-wrapper">
   <app-habit-card
-    *ngFor="let habit of filteredHabits.length === 0 ? trimmedHabits : filteredHabits"
+    class="habit-card"
+    *ngFor="
+      let habit of filteredHabits.length === 0 ? trimmedHabits : filteredHabits
+    "
     [habit]="habit"
   ></app-habit-card>
 
@@ -36,7 +39,7 @@
       *ngIf="trimmedHabits.length > 5 && !notFound"
       (click)="habits.length !== trimmedHabits.length ? loadMore() : rollUp()"
     >
-      {{ habits.length === trimmedHabits.length ? "Roll Up" : "Load More"  }}
+      {{ habits.length === trimmedHabits.length ? "Roll Up" : "Load More" }}
     </button>
   </div>
 </div>

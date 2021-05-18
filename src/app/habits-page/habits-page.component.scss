@@ -43,6 +43,15 @@
   display: flex;
   flex-wrap: wrap;
 
+  .habit-card {
+    transition: all 0.3s ease-in-out;
+  }
+
+  .habit-card:hover {
+    cursor: pointer;
+    transform: translateY(-20px);
+  }
+
   .example-button-row {
     width: 100%;
     display: flex;
@@ -50,8 +59,10 @@
     align-self: flex-end;
 
     .load-more-btn {
-      background-color: $bc-orange;
       color: $txt-c-white;
+      background-color: $bc-btn-orange;
+      box-shadow: 3px 3px 10px $sh-c-black;
+      transition: all 0.1s ease-in-out;
     }
 
     .load-more-btn:hover {
