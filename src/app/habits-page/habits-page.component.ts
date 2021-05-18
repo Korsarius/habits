@@ -25,6 +25,10 @@ export class HabitsPageComponent implements OnInit {
   ngOnInit(): void {
     this.handleFilter();
     this.auth.getHabits().subscribe((res) => {
+      // console.log('res', Object.keys(res));
+      
+      // Object.keys(res).forEach(key => this.habits.push({ key, ...res[key] }));
+      // console.log('res', this.habits);
       this.habits = res;
       this.trimmedHabits = this.habits.slice(this.startCard, 6);
       // console.log("TRIMMED", this.trimmedHabits);

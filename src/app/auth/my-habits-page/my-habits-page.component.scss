@@ -12,9 +12,24 @@
     padding-left: 50px;
     padding-top: 125px;
     padding-bottom: 65px;
+    ::ng-deep .mat-focused .mat-form-field-label {
+      /*change color of label*/
+      color: $bc-dark-goldenrod;
+    }
+  
+    ::ng-deep.mat-form-field-underline {
+      /*change color of underline*/
+      background-color: $bc-dark-goldenrod;
+    }
+  
+    ::ng-deep.mat-form-field-ripple {
+      /*change color of underline when focused*/
+      background-color: $bc-dark-goldenrod;
+    }
 
     input {
       color: $txt-c-white;
+      caret-color: $txt-c-orange;
     }
 
     .habit-dialog-btn {
@@ -22,7 +37,6 @@
       height: 35px;
       outline: none;
       font-size: 24px;
-      font-family: "Regular";
       cursor: pointer;
       border: none;
 

@@ -53,14 +53,24 @@ $b-c-black: #000;
 $sh-c-dark-orange: $bc-dark-goldenrod;
 $sh-c-black: #000;
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }
+
+::ng-deep{
+  button, .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    // font-size: 14px;
+    // font-weight: 500;
+}
+}
+
+::ng-deep{
+  .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $bc-btn-orange;
+  }
+  .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+    color: $bc-btn-orange; 
+  }  
+}

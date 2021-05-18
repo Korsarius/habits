@@ -148,6 +148,7 @@ export class AuthService {
       });
   }
 
+
   // Метод для добавления новых привычек в MyHabits в Realtime DataBase
   addToMyHabits(habit: IHabit, user: IUser): void {
     const myHabits: AngularFireList<IHabit> = this.realtimeDb.list(
