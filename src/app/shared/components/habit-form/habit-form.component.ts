@@ -7,10 +7,12 @@ import { IHabit, IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 import { HabitDialogComponent } from '../habit-dialog/habit-dialog.component';
 
+
 @Component({
   selector: 'app-habit-form',
   templateUrl: './habit-form.component.html',
   styleUrls: ['./habit-form.component.scss'],
+  
 })
 export class HabitFormComponent implements OnInit {
   @Input() habit: IHabit;

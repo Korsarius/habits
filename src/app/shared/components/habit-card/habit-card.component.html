@@ -6,7 +6,7 @@
   <div class="card-header">
     <mat-card-title class="card-title">{{ habit.title }}</mat-card-title>
     <mat-card-actions class="card-actions">
-      <button mat-button (click)="addToMyHabits()" *ngIf="isLoggenIn">
+      <button mat-button (click)="addToMyHabits(habit)" *ngIf="isLoggenIn">
         <mat-icon aria-label="Add icon">
           {{ !isAdded ? "add" : "remove" }}
         </mat-icon>

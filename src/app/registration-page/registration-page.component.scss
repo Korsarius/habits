@@ -22,7 +22,7 @@
         text-align: center;
         color: $txt-c-white;
         font-size: 20px;
-        font-family: "Regular";
+        
       }
       .date-gender-container {
         display: flex;
@@ -38,6 +38,9 @@
         ::ng-deep .mat-focused .mat-form-field-label {
           /*change color of label*/
           color: $bc-dark-goldenrod;
+          .mat-form-field-required-marker{
+            color: $bc-dark-goldenrod;
+          }
         }
 
         ::ng-deep.mat-form-field-underline {
@@ -92,7 +95,6 @@
           font-size: 24px;
           margin-top: 0px;
           margin-bottom: 0px;
-          font-family: "Regular";
           cursor: pointer;
           border: none;
           color: $txt-c-white;
