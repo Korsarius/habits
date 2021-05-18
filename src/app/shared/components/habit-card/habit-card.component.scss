@@ -1,16 +1,14 @@
 @import "../../../../styles.scss";
 
-// .card-container:nth-child(3n) {
-//   margin-right: 0;
-// }
-
 .card-container {
-  width: 358px;
+  width: 350px;
   height: 238px;
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   margin-right: 15px;
+  border: 2px solid bisque;
+  box-shadow: 0 3px 10px bisque;
   .card-header {
     flex: 1 1 100%;
     display: flex;
@@ -41,9 +39,11 @@
     flex: 0 1 100%;
   }
   .see-more-btn {
-    display: flex;
-    align-self: flex-end;
-    background-color: $bc-orange;
+    height: 36px;
+    color: $txt-c-white;
+    background-color: $bc-btn-orange;
+    box-shadow: 3px 3px 10px $sh-c-black;
+    transition: all 0.1s ease-in-out;
   }
   .see-more-btn:hover {
     color: $txt-c-orange;
@@ -57,6 +57,3 @@
   flex-wrap: wrap;
   margin-bottom: 15px;
 }
-// .card-container:nth-of-type(3n) {
-//   margin-right: 0;
-// }
