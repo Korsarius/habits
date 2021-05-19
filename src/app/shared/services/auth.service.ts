@@ -40,9 +40,7 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        console.log('result: ', result);
         this.getUser(result.user.uid).subscribe((user: IUser) => {
-          console.log('user: ', user);
           if (!user) {
             window.alert('User not found');
             location.reload();
@@ -179,16 +177,20 @@ export class AuthService {
       .subscribe((newUserInfo) => {
         newUserInfo.uid = JSON.parse(localStorage.getItem('user')).uid;
         localStorage.setItem('user', JSON.stringify(newUserInfo));
-        // this.getMyHabits(newUserInfo).pipe(take(1)).subscribe((myNewHabits) => {
-        //   console.log('myNewHabits: ', myNewHabits);
-        // });
       });
   }
 
   updateMyHabit(habit: IHabit, user: IUser): void {
-    console.log(habit.hid);
+    if (!habit.hid) {
+      delete habit.hid;
+      this.getMyHabitsId(user);
+      const userHabitsId: string[] = JSON.parse(
+        localStorage.getItem('myHabitsId')
+      );
+      habit.ownId = userHabitsId[userHabitsId.length - 1];
+    }
     const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
-      `users/${user.uid}/myHabits/${habit.hid}`
+      `users/${user.uid}/myHabits/${habit.hid || habit.ownId}`
     );
     myHabit.update(habit);
   }
@@ -204,9 +206,6 @@ export class AuthService {
       .subscribe((newUserInfo) => {
         newUserInfo.uid = JSON.parse(localStorage.getItem('user')).uid;
         localStorage.setItem('user', JSON.stringify(newUserInfo));
-        // this.getMyHabits(newUserInfo).pipe(take(1)).subscribe((myNewHabits) => {
-        //   console.log('myNewHabits: ', myNewHabits);
-        // });
       });
   }
 

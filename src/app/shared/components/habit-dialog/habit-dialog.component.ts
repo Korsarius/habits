@@ -17,6 +17,8 @@ export class HabitDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userHabit = this.data.habit;
+    if (this.data && this.data.habit) {
+      this.userHabit = this.data.habit;
+    }
   }
 }

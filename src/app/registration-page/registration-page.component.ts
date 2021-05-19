@@ -34,7 +34,6 @@ export class RegistrationPageComponent implements OnInit {
       gender: new FormControl(null),
       location: new FormControl(null),
     });
-    // console.log(this.form);
   }
 
   submit(): void {
@@ -46,24 +45,8 @@ export class RegistrationPageComponent implements OnInit {
 
     const user: IUser = {
       ...this.form.value,
-      // createdAt: new Date().toLocaleString(),
-      // email: this.form.value.email,
-      // password: this.form.value.password,
-      // secureToken: true,
     };
     delete user.password;
     this.auth.SignUp(user.email, this.form.value.password, user);
-
-    // this.auth.login(user).subscribe(
-    //   (res) => {
-    //     this.form.reset();
-    //     console.log(res);
-    //     this.router.navigate(['/']);
-    //     this.submitted = false;
-    //   },
-    //   () => {
-    //     this.submitted = false;
-    //   }
-    // );
   }
 }

@@ -22,7 +22,6 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('user'));
-    console.log('this.userData: ', this.userData);
     this.buildForm(this.userData);
     if (this.router.url === `/profile/${this.userData.uid}/edit`) {
       this.isEdit = true;

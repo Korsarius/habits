@@ -29,7 +29,6 @@ export class HabitFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    console.log(this.habit);
   }
 
   buildForm(): void {

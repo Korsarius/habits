@@ -6,8 +6,6 @@ export interface IUser {
   birthDate?: string;
   gender?: string;
   location?: string;
-  // createdAt?: string;
-  // secureToken?: boolean;
   uid?: string;
   displayName?: string;
   photoURL?: string;

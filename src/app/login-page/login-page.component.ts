@@ -26,9 +26,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
-    // this.auth.handleError
-    // this.user$.subscribe((res) => console.log("resLogin:", res));
-    this.auth.getUsers().subscribe((res) => console.log('result:', res));
+    this.auth.getUsers().subscribe();
   }
 
   buildForm(): void {
@@ -50,7 +48,6 @@ export class LoginPageComponent implements OnInit {
     const user: IUser = {
       email: this.form.value.email,
       password: this.form.value.password,
-      // secureToken: true,
     };
     this.auth.SignIn(user.email, user.password);
   }

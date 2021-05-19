@@ -44,7 +44,6 @@ export class MyHabitsPageComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this.user = JSON.parse(localStorage.getItem('user'));
-    // this.updateTable();
     this.auth.getMyHabitsId(this.user);
     setTimeout(() => {
       this.auth.getMyHabits(this.user).subscribe(
@@ -72,9 +71,7 @@ export class MyHabitsPageComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(HabitDialogComponent);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    dialogRef.afterClosed().subscribe();
   }
 
   openConfirmDialog(habit: IHabit, user: IUser): void {
@@ -93,7 +90,6 @@ export class MyHabitsPageComponent implements OnInit {
     });
     confirmDialog.afterClosed().subscribe(async (result) => {
       if (result) {
-        // await this.auth.updateMyHabit(habit, user);
         this.updateTable();
       }
     });

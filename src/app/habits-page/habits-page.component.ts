@@ -56,11 +56,9 @@ export class HabitsPageComponent implements OnInit {
               habit.type.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
               habit.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
           );
-          console.log('filteredHabits: health', this.filteredHabits);
           this.notFound = this.filteredHabits.length === 0;
           this.trimmedHabits = new Array<IHabit>();
         }
-        console.log('TRIMMED', this.filteredHabits);
       });
   }
 

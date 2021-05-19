@@ -14,6 +14,5 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(localStorage.getItem('user'));
-    console.log('this.userData: ', this.userData);
   }
 }

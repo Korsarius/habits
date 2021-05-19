@@ -27,7 +27,6 @@ export class MainLayoutComponent implements OnInit {
         .getUser(this.userData.uid)
         .subscribe((res) => (this.userName = res.firstName));
     }
-    // localStorage.setItem('myHabitsId', this.auth.getMyHabitsId(this.userData));
   }
 
   logout(): void {

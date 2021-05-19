@@ -32,7 +32,6 @@ export class HabitCardComponent implements OnInit {
       if (this.habit.title === this.userHabits[habit].title) {
         this.habit.hid = this.userHabits[habit].hid;
         this.habit.exist = true;
-        console.log(this.habit);
       }
     }
     this.isLoggenIn = !!localStorage.getItem('user');
