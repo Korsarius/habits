@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { IHabit, IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
 
@@ -10,6 +9,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HabitCardComponent implements OnInit {
   @Input() habit: IHabit;
+  @Input() userHabits: IHabit[];
+  @Input() userHabitsId: string[];
 
   habits: Array<IHabit> = new Array<IHabit>();
   isAdded: boolean = false;
@@ -17,26 +18,49 @@ export class HabitCardComponent implements OnInit {
   isLoggenIn: boolean;
   isShow: boolean = false;
   isCancel: boolean = false;
-  myHabitsListId: any;
 
+  myHabitsId: string[];
+  allHabitsKeys: string[];
 
-
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
-    console.log('myhabit', this.user.myHabits);
+    this.auth.getAllHabitsId();
+    this.allHabitsKeys = JSON.parse(localStorage.getItem('allHabitsId'));
+    for (const habit in this.userHabits) {
+      if (this.habit.title === this.userHabits[habit].title) {
+        this.habit.hid = this.userHabits[habit].hid;
+        this.habit.exist = true;
+        console.log(this.habit);
+      }
+    }
     this.isLoggenIn = !!localStorage.getItem('user');
   }
 
-  
-
-  addToMyHabits(): void {
- 
-    this.isAdded = !this.isAdded;
-    this.auth.addToMyHabits(this.habit, this.user);
+  deleteFromMyHabits(habit: IHabit): void {
+    this.habit.exist = false;
+    let equalIndex: number = 0;
+    const userHabits: IHabit[] = new Array<IHabit>();
+    for (const habit in this.user.myHabits) {
+      userHabits.push(this.user.myHabits[habit]);
+    }
+    userHabits.map((item, index) => {
+      if (item.title === habit.title) {
+        equalIndex = index;
+      }
+    });
+    if (this.user.myHabits) {
+      const userHabitsId: string[] = Object.keys(this.user.myHabits);
+      habit.ownId = userHabitsId[equalIndex];
+    }
+    this.auth.deleteMyHabit(habit, this.user);
   }
 
+  addToMyHabits(habit: IHabit): void {
+    this.habit.exist = true;
+    this.auth.addToMyHabits(habit, this.user);
+  }
 
   toggleVisibility(): void {
     this.isShow = true;

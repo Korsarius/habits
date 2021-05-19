@@ -92,7 +92,7 @@
 }
 
 .up-arrow {
-  // display: none;
+  display: none;
   position: fixed;
   right: 3%;
   bottom: 10%;
@@ -101,7 +101,7 @@
 }
 .up-arrow a i {
   font-size: 50px;
-  color: $bc-orange;
+  color: $bc-btn-orange;
 }
 .up-arrow:hover {
   opacity: 1;

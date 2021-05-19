@@ -1,5 +1,5 @@
-import { Observable, of, pipe, throwError } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, pipe, throwError } from 'rxjs';
+import { tap, map, switchMap, take } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
@@ -142,12 +142,31 @@ export class AuthService {
       .subscribe(() => {
         myHabitsId = Array.from(new Set(myHabitsId));
         setTimeout(() => {
-          console.log('myHabitsId: ', myHabitsId);
           localStorage.setItem('myHabitsId', JSON.stringify(myHabitsId));
         }, 500);
       });
   }
 
+  getAllHabitsId(): void {
+    const itemsRef: AngularFireList<IHabit[]> = this.realtimeDb.list('habits');
+    // Use snapshotChanges().map() to store the key
+    let allHabitsId: string[] = new Array();
+    itemsRef
+      .snapshotChanges()
+      .pipe(
+        map((changes: SnapshotAction<IHabit[]>[]) => {
+          return changes.map((habit: SnapshotAction<IHabit[]>) => {
+            allHabitsId.push(habit.payload.key);
+          });
+        })
+      )
+      .subscribe(() => {
+        allHabitsId = Array.from(new Set(allHabitsId));
+        setTimeout(() => {
+          localStorage.setItem('allHabitsId', JSON.stringify(allHabitsId));
+        }, 500);
+      });
+  }
 
   // Метод для добавления новых привычек в MyHabits в Realtime DataBase
   addToMyHabits(habit: IHabit, user: IUser): void {
@@ -155,6 +174,15 @@ export class AuthService {
       `users/${user.uid}/myHabits`
     );
     myHabits.push(habit);
+    this.getUser(user.uid)
+      .pipe(take(1))
+      .subscribe((newUserInfo) => {
+        newUserInfo.uid = JSON.parse(localStorage.getItem('user')).uid;
+        localStorage.setItem('user', JSON.stringify(newUserInfo));
+        // this.getMyHabits(newUserInfo).pipe(take(1)).subscribe((myNewHabits) => {
+        //   console.log('myNewHabits: ', myNewHabits);
+        // });
+      });
   }
 
   updateMyHabit(habit: IHabit, user: IUser): void {
@@ -164,11 +192,28 @@ export class AuthService {
     );
     myHabit.update(habit);
   }
-  
-  // Метод для удаления  привычки из MyHabits в Realtime DataBase
-  deleteMyHabit(habit: IHabit, user: IUser): Promise<void> {
+
+  // Метод для удаления привычки из MyHabits в Realtime DataBase
+  deleteMyHabit(habit: IHabit, user: IUser): void {
     const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
-      `users/${user.uid}/myHabits/${habit.hid}`
+      `users/${user.uid}/myHabits/${habit.ownId || habit.hid}`
+    );
+    myHabit.remove();
+    this.getUser(user.uid)
+      .pipe(take(1))
+      .subscribe((newUserInfo) => {
+        newUserInfo.uid = JSON.parse(localStorage.getItem('user')).uid;
+        localStorage.setItem('user', JSON.stringify(newUserInfo));
+        // this.getMyHabits(newUserInfo).pipe(take(1)).subscribe((myNewHabits) => {
+        //   console.log('myNewHabits: ', myNewHabits);
+        // });
+      });
+  }
+
+  // Метод для удаления всех привычек из MyHabits в Realtime DataBase
+  deleteAllMyHabit(user: IUser): Promise<void> {
+    const myHabit: AngularFireObject<IHabit> = this.realtimeDb.object(
+      `users/${user.uid}/myHabits`
     );
     return myHabit.remove();
   }

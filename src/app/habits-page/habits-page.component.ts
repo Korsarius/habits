@@ -1,7 +1,9 @@
+import { debounceTime } from 'rxjs/operators';
+
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
-import { IHabit } from '../shared/interfaces';
+
+import { IHabit, IUser } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
 
 @Component({
@@ -20,19 +22,20 @@ export class HabitsPageComponent implements OnInit {
   filteredHabits: IHabit[] = new Array<IHabit>();
   trimmedHabits: IHabit[] = new Array<IHabit>();
 
+  user: IUser;
+  allHabitsKeys: string[];
+  myHabitsId: string[];
+  counter: number = 0;
+
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
     this.handleFilter();
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.myHabitsId = JSON.parse(localStorage.getItem('myHabitsId'));
     this.auth.getHabits().subscribe((res) => {
-      // console.log('res', Object.keys(res));
-      
-      // Object.keys(res).forEach(key => this.habits.push({ key, ...res[key] }));
-      // console.log('res', this.habits);
       this.habits = res;
       this.trimmedHabits = this.habits.slice(this.startCard, 6);
-      // console.log("TRIMMED", this.trimmedHabits);
-      // this.selectedHabits = this.habits.slice(0, this.loadCount);
     });
   }
 
@@ -53,11 +56,11 @@ export class HabitsPageComponent implements OnInit {
               habit.type.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
               habit.title.toLowerCase().indexOf(value.toLowerCase()) !== -1
           );
-          console.log("filteredHabits: health",this.filteredHabits);
+          console.log('filteredHabits: health', this.filteredHabits);
           this.notFound = this.filteredHabits.length === 0;
           this.trimmedHabits = new Array<IHabit>();
         }
-        console.log("TRIMMED", this.filteredHabits);
+        console.log('TRIMMED', this.filteredHabits);
       });
   }
 

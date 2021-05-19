@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+} from '@angular/core';
 
 import { IHabit, IUser } from '../shared/interfaces';
 import { AuthService } from '../shared/services/auth.service';
@@ -8,30 +14,26 @@ import { AuthService } from '../shared/services/auth.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
-  @ViewChild('upArrow') upArrow: any;
-  habits: IHabit[] = new Array<IHabit>();
-  // upArrow = angular.element(document.querySelector("up-arrow"));
+export class HomePageComponent implements OnInit, AfterViewInit {
+  @ViewChild('upArrow') upArrow: ElementRef;
 
+  habits: IHabit[] = new Array<IHabit>();
   userData: IUser;
-  
+
   constructor(private auth: AuthService) {}
 
   ngOnInit(): void {
-    // Отображение стрелки для поднятия в начало сайта при скроле
-
-    // console.dir(this.upArrow);
-    // console.log('upArrow: ', this.upArrow);
-
-    // window.addEventListener('scroll', (event) => {
-    //   upArrow.style = 'display: block';
-    //   if (window.pageYOffset === 0) {
-    //     upArrow.style = 'display: none';
-    //   }
-    // });
     this.auth.getHabits().subscribe((res) => {
       this.habits = res;
-      console.log(this.habits)
+    });
+  }
+
+  ngAfterViewInit(): void {
+    // Отображение стрелки для поднятия в начало сайта при скроле
+    window.addEventListener('scroll', (event: Event) => {
+      window.pageYOffset === 0
+        ? (this.upArrow.nativeElement.style = 'display: none')
+        : (this.upArrow.nativeElement.style = 'display: block');
     });
   }
 }
