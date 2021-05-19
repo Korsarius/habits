@@ -62,7 +62,7 @@ export class MyHabitsPageComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.allHabitsList);
           this.dataSource.sort = this.sort;
           this.dataSource.paginator = this.paginator;
-          // this.loading = false;
+          this.loading = false;
         },
         (err) => console.log(err)
       );

@@ -14,9 +14,9 @@ import { HomePageModule } from './home-page/home-page.module';
 import { LoginPageModule } from './login-page/login-page.module';
 import { RegistrationPageModule } from './registration-page/registration-page.module';
 import { SharedModule } from './shared/shared.module';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from '../environments/environment';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,10 +29,10 @@ import { environment } from '../environments/environment';
     LoginPageModule,
     RegistrationPageModule,
     SharedModule,
-    NoopAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
