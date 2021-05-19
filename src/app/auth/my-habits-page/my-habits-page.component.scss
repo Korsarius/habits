@@ -3,6 +3,11 @@
 .my-habits-container {
   width: 100%;
   background-color: $bc-dark-blue;
+  .app-progress-bar{
+    margin-top: 100px;
+    color: orange;
+    // width: 100%;
+  }
 
   .my-habits-input {
     display: flex;
