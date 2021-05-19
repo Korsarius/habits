@@ -29,6 +29,8 @@
       let habit of filteredHabits.length === 0 ? trimmedHabits : filteredHabits
     "
     [habit]="habit"
+    [userHabits]="user.myHabits"
+    [userHabitsId]="myHabitsId"
   ></app-habit-card>
 
   <div class="example-button-row">
