@@ -73,4 +73,7 @@ body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }
   .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
     color: $bc-btn-orange; 
   }  
+  .mat-progress-spinner circle, .mat-spinner circle {
+    stroke: $bc-btn-orange;
+}
 }

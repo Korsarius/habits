@@ -6,12 +6,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 import { MatTableDataSource } from '@angular/material/table';
+import { finalize } from 'rxjs/operators';
 import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
 
 import { HabitDialogComponent } from 'src/app/shared/components/habit-dialog/habit-dialog.component';
 import { HabitFormComponent } from 'src/app/shared/components/habit-form/habit-form.component';
 import { IHabit, IUser } from 'src/app/shared/interfaces';
 import { AuthService } from 'src/app/shared/services/auth.service';
+
 
 @Component({
   selector: 'app-my-habits-page',
@@ -22,6 +24,7 @@ export class MyHabitsPageComponent implements OnInit {
   allHabitsList: Array<IHabit>;
   user: IUser;
   valueFilter: string = '';
+  loading: boolean;
 
   displayedColumns: string[] = [
     'Index',
@@ -39,8 +42,32 @@ export class MyHabitsPageComponent implements OnInit {
   constructor(public dialog: MatDialog, private auth: AuthService) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.user = JSON.parse(localStorage.getItem('user'));
-    this.updateTable();
+    // this.updateTable();
+    this.auth.getMyHabitsId(this.user);
+    setTimeout(() => {
+      this.auth.getMyHabits(this.user).subscribe(
+        (res) => {
+          this.allHabitsList = res;
+          this.allHabitsList.map((habit: IHabit, index: number) => {
+            JSON.parse(localStorage.getItem('myHabitsId')).map(
+              (id: string, i: number) => {
+                if (index === i) {
+                  habit.hid = id;
+                }
+              }
+            );
+          });
+          this.dataSource = new MatTableDataSource(this.allHabitsList);
+          this.dataSource.sort = this.sort;
+          this.dataSource.paginator = this.paginator;
+          // this.loading = false;
+        },
+        (err) => console.log(err)
+      );
+    }, 1000);
+    
   }
 
   openDialog(): void {
