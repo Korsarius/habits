@@ -4,49 +4,124 @@
     <span>Top 5 Habits</span>
   </div>
   <div class="habits-items">
-    <app-habit-card class="habit-card" *ngFor="let habit of habits |  slice:0:5" [habit]="habit"></app-habit-card>
+    <app-habit-card
+      class="habit-card"
+      *ngFor="let habit of habits | slice: 0:5"
+      [habit]="habit"
+    ></app-habit-card>
   </div>
-
-  
 </div>
 <section class="about" id="about-section">
   <h1 class="about-title">About Us</h1>
   <div class="about-block">
     <div class="about-text">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus saepe natus ipsa incidunt atque nulla
-      assumenda aliquam praesentium nisi quae, repudiandae voluptatibus voluptatem autem ratione et impedit earum beatae
-      exercitationem quasi suscipit? Nulla, impedit corrupti? Aperiam impedit officia quasi quos aliquam dolorum fugit
-      debitis accusantium! Exercitationem eos, suscipit nobis aspernatur incidunt temporibus culpa assumenda molestiae,
-      consequuntur praesentium eum odit? Possimus, corporis! Dolore facere a voluptas quae in, similique nobis
-      blanditiis totam adipisci, cum excepturi dolor quos ab dolorum nam fuga accusamus sint recusandae nostrum pariatur
-      nesciunt commodi! Deserunt laboriosam ad voluptatibus aperiam et natus omnis perspiciatis nisi quasi, porro sequi!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ut ipsum accusantium magnam minima neque aliquid
-      voluptate harum voluptatum sapiente exercitationem, dolor perferendis autem consectetur accusamus beatae nam. Eius
-      tempora soluta enim eaque quam debitis ducimus? Error impedit odio quia sapiente minima similique quam iusto
-      explicabo nemo. Culpa aperiam iusto eligendi aspernatur ex ea reprehenderit unde eaque iure obcaecati! Ab
-      molestias dolorem magni, amet placeat eum dolorum commodi quia iure iusto. Nihil explicabo blanditiis nisi libero
-      sit? Ducimus, facere officiis sit saepe amet deserunt obcaecati cum nostrum ea assumenda id eum totam harum? Illo
-      ex veritatis inventore itaque repudiandae aliquid modi id nostrum commodi magnam quaerat corrupti, excepturi
-      incidunt quas vitae atque accusantium sed. Vel, quia fugit. Autem rerum placeat atque unde consectetur id
-      praesentium exercitationem quas dolorem dolores possimus ipsum nesciunt aperiam cupiditate nobis nihil magnam
-      quasi ipsa molestias quibusdam aliquid iure, debitis excepturi fugit. Similique magni est maiores enim nesciunt
-      blanditiis minima unde, voluptatibus repudiandae, non qui vel esse amet, vitae magnam quod eaque autem mollitia
-      consectetur possimus in quaerat labore quisquam sit. Laudantium eveniet ut asperiores non doloribus numquam itaque
-      repellat ab possimus, necessitatibus iure, similique quos dolore animi quam distinctio! Sit eligendi itaque labore
-      dolorem laborum.
+      <p>
+        <strong>MyHabits</strong> application is quite simple and intuitively
+        designed on Angular framework. It makes keeping track of your habits
+        simple and easy to change. One can add habits from a bunch or create
+        your own habits. You can also easily change details of the habit to fit
+        it to your own needs.
+      </p>
+      <p><br /></p>
+      <p>
+        Overeating and poor eating habits are unfortunate cornerstones of our
+        culture, which is why it is so difficult to make good daily diet
+        decisions. Unfortunately, another trending cornerstone in our culture is
+        our obsession with quick diet fixes: eliminate gluten, boost protein,
+        eat like a caveman... It’s no wonder that despite all our advances in
+        nutrition and medical research, people are still confused about what
+        it’s like to eat normally and nutritiously. And that’s a shame because
+        eating healthfully is essential for living a healthy, balanced, happy
+        life.
+      </p>
+      <p><br /></p>
+      <p>
+        Making a plan will give you the focus and direction you need to achieve
+        your goals. It’s important to think about exactly what it is you want to
+        achieve and then write it down.
+      </p>
+      <p><br /></p>
+      <p>
+        In order to succeed, we must understand that motivation is not
+        automatic. Motives change weekly, if not daily. But that’s okay. As long
+        as we find something that motivates us towards getting fit and eating
+        right, it doesn’t matter what it is
+      </p>
+
+      <!-- Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
+      saepe natus ipsa incidunt atque nulla assumenda aliquam praesentium nisi
+      quae, repudiandae voluptatibus voluptatem autem ratione et impedit earum
+      beatae exercitationem quasi suscipit? Nulla, impedit corrupti? Aperiam
+      impedit officia quasi quos aliquam dolorum fugit debitis accusantium!
+      Exercitationem eos, suscipit nobis aspernatur incidunt temporibus culpa
+      assumenda molestiae, consequuntur praesentium eum odit? Possimus,
+      corporis! Dolore facere a voluptas quae in, similique nobis blanditiis
+      totam adipisci, cum excepturi dolor quos ab dolorum nam fuga accusamus
+      sint recusandae nostrum pariatur nesciunt commodi! Deserunt laboriosam ad
+      voluptatibus aperiam et natus omnis perspiciatis nisi quasi, porro sequi!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ut ipsum
+      accusantium magnam minima neque aliquid voluptate harum voluptatum
+      sapiente exercitationem, dolor perferendis autem consectetur accusamus
+      beatae nam. Eius tempora soluta enim eaque quam debitis ducimus? Error
+      impedit odio quia sapiente minima similique quam iusto explicabo nemo.
+      Culpa aperiam iusto eligendi aspernatur ex ea reprehenderit unde eaque
+      iure obcaecati! Ab molestias dolorem magni, amet placeat eum dolorum
+      commodi quia iure iusto. Nihil explicabo blanditiis nisi libero sit?
+      Ducimus, facere officiis sit saepe amet deserunt obcaecati cum nostrum ea
+      assumenda id eum totam harum? Illo ex veritatis inventore itaque
+      repudiandae aliquid modi id nostrum commodi magnam quaerat corrupti,
+      excepturi incidunt quas vitae atque accusantium sed. Vel, quia fugit.
+      Autem rerum placeat atque unde consectetur id praesentium exercitationem
+      quas dolorem dolores possimus ipsum nesciunt aperiam cupiditate nobis
+      nihil magnam quasi ipsa molestias quibusdam aliquid iure, debitis
+      excepturi fugit. Similique magni est maiores enim nesciunt blanditiis
+      minima unde, voluptatibus repudiandae, non qui vel esse amet, vitae magnam
+      quod eaque autem mollitia consectetur possimus in quaerat labore quisquam
+      sit. Laudantium eveniet ut asperiores non doloribus numquam itaque
+      repellat ab possimus, necessitatibus iure, similique quos dolore animi
+      quam distinctio! Sit eligendi itaque labore dolorem laborum. -->
     </div>
     <div class="about-img">
-      <img src="../../assets/images/cyclist.jpg">
+      <img src="../../assets/images/cyclist.jpg" />
     </div>
   </div>
 
   <h2 class="about-title">Create better you</h2>
   <div class="about-block">
     <div class="about-img">
-      <img src="../../assets/images/cyclist.jpg">
+      <img src="../../assets/images/running.png" />
     </div>
     <div class="about-text">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nemo cum mollitia officia architecto
+      <strong>Here are some tips for forming new healthy habits.</strong>
+      <p><br /></p>
+      <p>
+        <strong>Stack your habits.</strong> The best way to form a new habit is
+        to tie it to an existing habit, experts say. Look for patterns in your
+        day and think about how you can use existing habits to create new,
+        positive ones. For many of us, our morning routine is our strongest
+        routine, so that’s a great place to stack on a new habit. A morning cup
+        of coffee, for example, can create a great opportunity to start a new
+        one-minute meditation practice.
+      </p>
+      <p><br /></p>
+      <p>
+        <strong>Start small.</strong> Big behavior changes require a high level
+        of motivation that often can’t be sustained. He suggests starting with
+        tiny habits to make the new habit as easy as possible in the beginning.
+        Taking a daily short walk, for example, could be the beginning of an
+        exercise habit. Or, putting an apple in your bag every day could lead to
+        better eating habits.
+      </p>
+
+      <p><br /></p>
+      <p>
+        <strong>Do it every day.</strong> British researchers studied how people
+        form habits in the real world, asking participants to choose a simple
+        habit they wanted to form, like drinking water at lunch or taking a walk
+        before dinner.
+      </p>
+
+      <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nemo cum mollitia officia architecto
       aperiam consectetur dolorem quibusdam commodi. Aut quis quam ipsam at molestiae fugit, fugiat quo perspiciatis
       placeat recusandae voluptate quaerat harum quod illo fuga non nihil aliquam alias pariatur hic corrupti labore.
       Ipsa eius nesciunt possimus nam libero. Repellendus soluta minus ratione dolorum, ducimus maiores inventore
@@ -66,7 +141,7 @@
       blanditiis minima unde, voluptatibus repudiandae, non qui vel esse amet, vitae magnam quod eaque autem mollitia
       consectetur possimus in quaerat labore quisquam sit. Laudantium eveniet ut asperiores non doloribus numquam itaque
       repellat ab possimus, necessitatibus iure, similique quos dolore animi quam distinctio! Sit eligendi itaque labore
-      dolorem laborum.
+      dolorem laborum. -->
     </div>
   </div>
 </section>
