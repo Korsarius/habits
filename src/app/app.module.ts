@@ -2,6 +2,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
+import { SwiperModule } from 'swiper/angular';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -33,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    SwiperModule,
   ],
+  exports: [SwiperModule],
   providers: [],
   bootstrap: [AppComponent],
 })

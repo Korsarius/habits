@@ -1,3 +1,5 @@
+import { SwiperModule } from 'swiper/angular';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [HomePageComponent],
-  imports: [CommonModule, RouterModule, MatIconModule, SharedModule],
+  imports: [CommonModule, RouterModule, MatIconModule, SharedModule, SwiperModule],
   exports: [RouterModule],
 })
 export class HomePageModule {}

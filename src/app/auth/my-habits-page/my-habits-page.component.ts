@@ -158,12 +158,6 @@ export class MyHabitsPageComponent implements OnInit, OnDestroy {
   }
 
   applyFilter(value: string): void {
-    // this.router.queryParams
-    // .pipe(takeWhile(() => this.isAlive))
-    // .subscribe((urlParams) => {
-    //   let filterValue: string = urlParams.filter; // get filter value from url
-    // });
-    
     this.dataSource.filter = value.trim().toLocaleLowerCase();
     this.route.navigate([], {
       relativeTo: this.router,
