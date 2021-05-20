@@ -73,6 +73,7 @@ export class MyHabitsPageComponent implements OnInit, OnDestroy {
         if (result) {
           await this.auth.deleteMyHabit(habit, user);
           this.updateTable();
+          this.route.navigate([['/profile',  user.uid, 'myhabits']]);
         }
       });
   }
@@ -87,6 +88,7 @@ export class MyHabitsPageComponent implements OnInit, OnDestroy {
       .subscribe(async (result) => {
         if (result) {
           this.updateTable();
+          this.route.navigate([['/profile',  user.uid, 'myhabits']]);
         }
       });
   }
@@ -163,6 +165,9 @@ export class MyHabitsPageComponent implements OnInit, OnDestroy {
       queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
   }
+
+
+
 
   claenFilter(): void {
     this.valueFilter = '';

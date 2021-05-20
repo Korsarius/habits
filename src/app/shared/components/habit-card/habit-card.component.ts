@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IHabit, IUser } from '../../interfaces';
 import { AuthService } from '../../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-habit-card',
@@ -22,7 +23,7 @@ export class HabitCardComponent implements OnInit {
   myHabitsId: string[];
   allHabitsKeys: string[];
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private route: Router) {}
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -54,11 +55,13 @@ export class HabitCardComponent implements OnInit {
       habit.ownId = userHabitsId[equalIndex];
     }
     this.auth.deleteMyHabit(habit, this.user);
+    this.route.navigate(['/habits']);
   }
 
   addToMyHabits(habit: IHabit): void {
     this.habit.exist = true;
     this.auth.addToMyHabits(habit, this.user);
+    this.route.navigate(['/habits']);
   }
 
   toggleVisibility(): void {
