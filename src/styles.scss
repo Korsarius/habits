@@ -17,7 +17,7 @@ p {
 // $bc-white: #fff;
 $bc-dark-blue: #141d2d;
 $bc-dark-goldenrod: #b8860b;
-$bc-goldenrod:#daa520;
+$bc-goldenrod: #daa520;
 $bc-table: repeating-linear-gradient(45deg, black, transparent 100px);
 $bc-btn-orange: #ffa500;
 $bc-green: #5a8100;
@@ -53,27 +53,48 @@ $b-c-black: #000;
 $sh-c-dark-orange: $bc-dark-goldenrod;
 $sh-c-black: #000;
 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
+}
 
-
-html, body { height: 100%; }
-body { margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif; }
-
-::ng-deep{
-  button, .mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+::ng-deep {
+  button,
+  .mat-button,
+  .mat-raised-button,
+  .mat-icon-button,
+  .mat-stroked-button,
+  .mat-flat-button,
+  .mat-fab,
+  .mat-mini-fab {
     font-family: "Roboto", "Helvetica Neue", sans-serif;
     // font-size: 14px;
     // font-weight: 500;
-}
+  }
 }
 
-::ng-deep{
+::ng-deep {
   .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
     color: $bc-btn-orange;
   }
   .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
-    color: $bc-btn-orange; 
-  }  
-  .mat-progress-spinner circle, .mat-spinner circle {
+    color: $bc-btn-orange;
+  }
+  .mat-progress-spinner circle,
+  .mat-spinner circle {
     stroke: $bc-btn-orange;
-}
+  }
+  .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $bc-btn-orange;
+    color: $bc-btn-orange;
+  }
+  .mat-form-field-underline,
+  .mat-form-field-ripple {
+    background-color: $bc-btn-orange;
+    color: $bc-btn-orange;
+  }
 }

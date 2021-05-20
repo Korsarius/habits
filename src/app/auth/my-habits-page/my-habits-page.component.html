@@ -5,7 +5,7 @@
         <mat-label>Filter</mat-label>
         <input
           matInput
-          (keyup)="applyFilter($event)"
+          (keyup)="applyFilter($event.target.value)"
           [(ngModel)]="valueFilter"
           name="valueFilter"
         />
@@ -29,33 +29,33 @@
 
     <div class="mat-elevation-z8 my-habits-table">
       <table class="table" mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="Index">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
-          <td mat-cell *matCellDef="let habit; let i = index">{{ i + 1 }}</td>
+        <ng-container matColumnDef="counter">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let habit; let counter = index">{{ counter + 1 }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Habit Name">
+        <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Habit Name</th>
           <td mat-cell *matCellDef="let habit">{{ habit.title }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Frequency">
+        <ng-container matColumnDef="frequency">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency</th>
           <td mat-cell *matCellDef="let habit">{{ habit.frequency }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Type">
+        <ng-container matColumnDef="type">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Type</th>
           <td mat-cell *matCellDef="let habit">{{ habit.type }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Public">
+        <ng-container matColumnDef="public">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Public</th>
           <td mat-cell *matCellDef="let habit">{{ habit.public }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="Delete">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let habit">
             <button mat-icon-button>
               <mat-icon

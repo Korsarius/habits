@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
     SharedModule,
     FormsModule,

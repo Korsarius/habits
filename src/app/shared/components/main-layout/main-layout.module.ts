@@ -48,6 +48,10 @@ import { MyHabitsPageComponent } from 'src/app/auth/my-habits-page/my-habits-pag
             component: MyHabitsPageComponent,
           },
           {
+            path: 'profile/:id/myhabits?pagination=5&filter=sport',
+            component: MyHabitsPageComponent,
+          },
+          {
             path: 'profile/:id/edit',
             component: ProfilePageComponent,
           },
