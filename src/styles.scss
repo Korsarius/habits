@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~swiper/swiper-bundle";
 
 @font-face {
   font-family: "Playball-Regular";
@@ -96,5 +97,84 @@ body {
   .mat-form-field-ripple {
     background-color: $bc-btn-orange;
     color: $bc-btn-orange;
+  }
+  .swiper-wrapper {
+    width: 300px;
+    // background: red;
+  }
+  .swiper-slide {
+    width: 300px;
+    height: 300px;
+  }
+  .mySwiper {
+    width: 100%;
+    height: 500px;
+    margin: 0 auto;
+  }
+
+  .one,
+  .two,
+  .three,
+  .four,
+  .five {
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .one {
+    background-image: url("./assets/images/drink_water.jpg");
+  }
+  .two {
+    background-image: url("./assets/images/set_deadline.jpg");
+  }
+  .three {
+    background-image: url("./assets/images/breakfast.jpg");
+  }
+  .four {
+    background-image: url("./assets/images/real_foods.jpg");
+  }
+  .five {
+    background-image: url("./assets/images/consistance.jpg");
+  }
+
+  .top-habit-title {
+    line-height: 70px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 50px;
+    text-shadow: -4px -4px #000, 0 4px 0 rgb(158, 105, 7);
+    text-align: left;
+    color: #fff;
+  }
+
+  .water-p {
+    position: absolute;
+    left: 170px;
+    top: 50px;
+  }
+  .deadline-p {
+    position: absolute;
+    left: 100px;
+    top: 200px;
+  }
+  .breakfast-p {
+    position: absolute;
+    text-align: right;
+    right: 100px;
+    top: 120px;
+  }
+  .food-p {
+    position: absolute;
+    text-align: right;
+    right: 170px;
+    top: 150px;
+  }
+  .consistent-p {
+    position: absolute;
+    left: 420px;
+    top: 100px;
   }
 }

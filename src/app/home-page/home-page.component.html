@@ -3,13 +3,57 @@
   <div class="top-five">
     <span>Top 5 Habits</span>
   </div>
-  <div class="habits-items">
+  <swiper
+    [spaceBetween]="30"
+    [centeredSlides]="true"
+    [loop]="true"
+    [autoplay]="{
+      delay: 2500,
+      disableOnInteraction: false
+    }"
+    [pagination]="{
+      clickable: true
+    }"
+    [navigation]="true"
+    class="mySwiper"
+  >
+    <ng-template swiperSlide>
+      <div class="one">
+      </div>
+      <p class="top-habit-title water-p">Drink<br />lots<br />of water</p>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="two">
+      </div>
+      <p class="top-habit-title deadline-p">Set<br />a<br />deadline</p>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="three">
+      </div>
+      <p class="top-habit-title breakfast-p">Start off<br />with<br />a breakfast</p>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="four">
+      </div>
+      <div>
+        <p class="top-habit-title food-p">Eat<br />whole,<br />real<br />foods</p>
+      </div>
+    </ng-template>
+    <ng-template swiperSlide>
+      <div class="five">
+      </div>
+      <div>
+        <p class="top-habit-title consistent-p">Remain<br />consistent</p>
+      </div>
+    </ng-template>
+  </swiper>
+  <!-- <div class="habits-items">
     <app-habit-card
       class="habit-card"
       *ngFor="let habit of habits | slice: 0:5"
       [habit]="habit"
     ></app-habit-card>
-  </div>
+  </div> -->
 </div>
 <section class="about" id="about-section">
   <h1 class="about-title">About Us</h1>
