@@ -49,4 +49,8 @@ export class RegistrationPageComponent implements OnInit {
     delete user.password;
     this.auth.SignUp(user.email, this.form.value.password, user);
   }
+
+  signInWithGoogle(): void {
+    this.auth.GoogleAuth();
+  }
 }
