@@ -1,6 +1,7 @@
 export interface Environment {
   production: boolean;
   firebase: Firebase;
+  firebaseUrl?: string;
 }
 
 export interface Firebase {
