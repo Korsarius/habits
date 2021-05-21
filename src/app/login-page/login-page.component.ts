@@ -51,4 +51,8 @@ export class LoginPageComponent implements OnInit {
     };
     this.auth.SignIn(user.email, user.password);
   }
+
+  signInWithGoogle(): void {
+    this.auth.GoogleAuth();
+  }
 }
