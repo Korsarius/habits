@@ -4,25 +4,23 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 @Component({
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
-  styleUrls: ['./confirmation-dialog.component.scss']
+  styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent implements OnInit {
-
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
     dialogRef.disableClose = true;
   }
 
-  ngOnInit(): void {
-  }
-  
+  ngOnInit(): void {}
 
-  cancel(): void{
+  cancel(): void {
     this.dialogRef.close();
   }
 
-  delete(isDelete: boolean): void{
+  delete(isDelete: boolean): void {
     this.dialogRef.close(isDelete);
   }
 }

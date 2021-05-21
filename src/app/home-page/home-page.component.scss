@@ -10,7 +10,7 @@
     margin-top: 100px;
     text-align: center;
     span {
-      font: 700 4em/1 "Roboto", sans-serif;
+      font: 700 48px "Roboto", sans-serif;
       letter-spacing: 0;
       padding: 0.25em 0 40px;
       display: block;
@@ -57,9 +57,14 @@
   align-items: center;
   margin: 0 auto;
   background: $bc-white;
-  padding-top: 20px;
+  padding-top: 60px;
   .about-title {
     font-size: 48px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  .about-title-you {
+    font-size: 40px;
     margin-top: 20px;
     margin-bottom: 40px;
   }

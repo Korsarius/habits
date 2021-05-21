@@ -6,7 +6,11 @@
   <div class="card-header">
     <mat-card-title class="card-title">{{ habit.title }}</mat-card-title>
     <mat-card-actions class="card-actions">
-      <button mat-button *ngIf="isLoggenIn" (click)="habit.exist ? deleteFromMyHabits(habit) : addToMyHabits(habit)">
+      <button
+        mat-button
+        *ngIf="isLoggenIn"
+        (click)="habit.exist ? deleteFromMyHabits(habit) : addToMyHabits(habit)"
+      >
         <mat-icon aria-label="Add icon">
           {{ habit.exist ? "remove" : "add" }}
         </mat-icon>
@@ -26,11 +30,10 @@
   }}</mat-card-content>
 
   <mat-card-content class="card-content" *ngIf="isLoggenIn"
-    >{{ habit.description | slice: 0:200 }}<span>...</span>
-
-    <div *ngIf="isShow">
+    >{{ habit.description | slice: 0:200 }}<span *ngIf="!isShow">...</span>
+    <p class="full-content" *ngIf="isShow">
       {{ habit.description | slice: 200:10000 }}
-    </div>
+    </p>
   </mat-card-content>
   <button
     mat-button

@@ -9,6 +9,7 @@
   margin-right: 15px;
   border: 2px solid bisque;
   box-shadow: 0 3px 10px bisque;
+
   .card-header {
     flex: 1 1 100%;
     display: flex;
@@ -36,7 +37,12 @@
 
   .card-content {
     flex: 0 1 100%;
+
+    .full-content {
+      display: inline;
+    }
   }
+
   .see-more-btn {
     height: 36px;
     color: $txt-c-white;
@@ -44,11 +50,13 @@
     box-shadow: 3px 3px 10px $sh-c-black;
     transition: all 0.1s ease-in-out;
   }
+
   .see-more-btn:hover {
     color: $txt-c-orange;
     background-color: $bc-white;
   }
 }
+
 .card-container-bg {
   width: 350px;
   height: 420px;
