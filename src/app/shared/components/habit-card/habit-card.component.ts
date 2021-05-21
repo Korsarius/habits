@@ -55,13 +55,13 @@ export class HabitCardComponent implements OnInit {
       habit.ownId = userHabitsId[equalIndex];
     }
     this.auth.deleteMyHabit(habit, this.user);
-    this.route.navigate(['/habits']);
+    // this.route.navigate(['/habits']);
   }
 
   addToMyHabits(habit: IHabit): void {
     this.habit.exist = true;
     this.auth.addToMyHabits(habit, this.user);
-    this.route.navigate(['/habits']);
+    // this.route.navigate(['/habits']);
   }
 
   toggleVisibility(): void {

@@ -1,6 +1,8 @@
 import { BehaviorSubject, Observable, of, pipe, throwError } from 'rxjs';
 import { tap, map, switchMap, take } from 'rxjs/operators';
 
+import firebase from 'firebase/app';
+
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -33,6 +35,38 @@ export class AuthService {
   handleError(error: any): Observable<any> {
     console.log('error: ', error);
     return of(error);
+  }
+
+  // Sign in with Google
+  GoogleAuth(): void {
+    // Using a popup.
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(async (result) => {
+        // This gives you a Google Access Token.
+        // var token = result.credential.accessToken;
+        // The signed-in user info.
+        const user: IUser = {
+          email: result.user.email,
+          firstName: result.user.displayName.split(' ')[0] || '',
+        };
+        console.log('user: ', user);
+        await this.recordUserData(result.user.uid, user);
+        this.getUser(result.user.uid).subscribe((user: IUser) => {
+          if (!user) {
+            window.alert('User not found');
+            location.reload();
+          }
+          const currentUser: IUser = user;
+          currentUser.uid = result.user.uid;
+          localStorage.setItem('user', JSON.stringify(currentUser));
+          this.router.navigate(['/']);
+        });
+      });
   }
 
   // Sign in with email/password
